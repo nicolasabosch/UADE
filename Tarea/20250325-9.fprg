@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="20250325-9"/>
+        <attribute name="authors" value="nicol"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2025-03-25 08:17:23 p.&#8239;m."/>
+        <attribute name="created" value="bmljb2w7TklDT0xBUzsyMDI1LTAzLTI1OzA4OjAzOjE5IHAu4oCvbS47MTA3MzM="/>
+        <attribute name="edited" value="bmljb2w7TklDT0xBUzsyMDI1LTAzLTI1OzA4OjE3OjIzIHAu4oCvbS47MTsxMDg0MQ=="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="salario, comisionVenta, numeroVendedor, cantidadVentas, valorTotalVentas, comisionPorVentas" type="Integer" array="False" size=""/>
+            <declare name="comisionPorValor, salarioTotal" type="Real" array="False" size=""/>
+            <assign variable="salario" expression="250000"/>
+            <assign variable="comisionVenta" expression="50000"/>
+            <output expression="&quot;Cual el es numero de vendedor&quot;" newline="True"/>
+            <input variable="numeroVendedor"/>
+            <output expression="&quot;Cantidad de ventas&quot;" newline="True"/>
+            <input variable="cantidadVentas"/>
+            <output expression="&quot;Cual es el valor total de las ventas&quot;" newline="True"/>
+            <input variable="valorTotalVentas"/>
+            <assign variable="comisionPorVentas" expression="cantidadVentas * comisionVenta"/>
+            <assign variable="comisionPorValor" expression="valorTotalVentas * 0.05"/>
+            <assign variable="salarioTotal" expression="salario + comisionPorVentas + comisionPorValor"/>
+            <output expression="&quot;El vendedor numero: &quot;&amp;numeroVendedor&amp;&quot; tiene un salario total de $&quot;&amp;salarioTotal&amp;&quot; este mes&quot;" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>

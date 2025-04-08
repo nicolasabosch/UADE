@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="EJ1_C"/>
+        <attribute name="authors" value="xarb034"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2025-03-17 12:19:43 p.&#160;m."/>
+        <attribute name="created" value="eGFyYjAzNDtBUkJBLVhBUkIwMzQ7MjAyNS0wMy0xNzsxMjoxNTozNCBwLsKgbS47Mjk1MQ=="/>
+        <attribute name="edited" value="eGFyYjAzNDtBUkJBLVhBUkIwMzQ7MjAyNS0wMy0xNzsxMjoxOTo0MyBwLsKgbS47MjszMDY0"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <output expression="&quot;Entro al ba&#241;o&quot;" newline="True"/>
+            <output expression="&quot;Abro la canilla&quot;" newline="True"/>
+            <output expression="&quot;me enjabono las manos&quot;" newline="True"/>
+            <output expression="&quot;enjugago mis manos&quot;" newline="True"/>
+            <output expression="&quot;cierro la canilla&quot;" newline="True"/>
+            <output expression="&quot;Seco mis manos con una toalla&quot;" newline="True"/>
+            <output expression="&quot;Salir al ba&#241;o&quot;" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>

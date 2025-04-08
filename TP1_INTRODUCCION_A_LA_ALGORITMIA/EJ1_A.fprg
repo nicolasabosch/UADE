@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="EJ1_A"/>
+        <attribute name="authors" value="xarb034"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2025-03-17 12:08:18 p.&#160;m."/>
+        <attribute name="created" value="eGFyYjAzNDtBUkJBLVhBUkIwMzQ7MjAyNS0wMy0xNzsxMjowMDo1MCBwLsKgbS47Mjk0Mw=="/>
+        <attribute name="edited" value="eGFyYjAzNDtBUkJBLVhBUkIwMzQ7MjAyNS0wMy0xNzsxMjowODoxOCBwLsKgbS47MTszMDYz"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <output expression="&quot;Agarro el celular&quot;" newline="True"/>
+            <output expression="&quot;prendo pantalla&quot;" newline="True"/>
+            <output expression="&quot;desbloqueo el celular&quot;" newline="True"/>
+            <output expression="&quot;abro whatsapp&quot;" newline="True"/>
+            <output expression="&quot;elijo el chat&quot;" newline="True"/>
+            <output expression="&quot;mantengo apretado boton microfono&quot;" newline="True"/>
+            <output expression="&quot;hablo hasta cuando lo que yo quiera&quot;" newline="True"/>
+            <output expression="&quot;Suelto el boton de microfono&quot;" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>

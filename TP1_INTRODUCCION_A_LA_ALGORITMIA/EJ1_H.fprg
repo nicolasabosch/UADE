@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="EJ1_H"/>
+        <attribute name="authors" value="xarb034"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2025-03-17 12:36:39 p.&#160;m."/>
+        <attribute name="created" value="eGFyYjAzNDtBUkJBLVhBUkIwMzQ7MjAyNS0wMy0xNzsxMjozMzoyOSBwLsKgbS47Mjk1NQ=="/>
+        <attribute name="edited" value="eGFyYjAzNDtBUkJBLVhBUkIwMzQ7MjAyNS0wMy0xNzsxMjozNjozOSBwLsKgbS47MTszMDY3"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <output expression="&quot;Multiplico 2*3&quot;" newline="True"/>
+            <output expression="&quot;El resultado(6) lo sumo con 4&quot;" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>
