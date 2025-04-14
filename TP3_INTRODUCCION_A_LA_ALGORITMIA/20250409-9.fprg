@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="ejercicio 9 flowgo"/>
+        <attribute name="authors" value="fcfra"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2025-04-08 09:31:06 p.&#160;m."/>
+        <attribute name="created" value="ZmNmcmE7REVTS1RPUC1WSEEwOVQ4OzIwMjUtMDQtMDg7MDk6MTU6MjkgcC7CoG0uOzMxNzI="/>
+        <attribute name="edited" value="ZmNmcmE7REVTS1RPUC1WSEEwOVQ4OzIwMjUtMDQtMDg7MDk6MzE6MDYgcC7CoG0uOzE7MzI3Mw=="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="dia, mes, a&#241;o" type="Integer" array="False" size=""/>
+            <output expression="&quot;ingrse numero del dia ?/-/-&quot;" newline="True"/>
+            <input variable="dia"/>
+            <if expression="dia &gt; 0 and dia &lt;= 31">
+                <then>
+                    <output expression="&quot;dia valido&quot;" newline="True"/>
+                    <output expression="&quot;ingrse numero de mes &quot;&amp;dia&amp;&quot;/?/-&quot;" newline="True"/>
+                    <input variable="mes"/>
+                    <if expression="mes &gt; 0 and mes &lt;= 12">
+                        <then>
+                            <output expression="&quot;mes valido&quot;" newline="True"/>
+                            <output expression="&quot;ingrse numero de a&#241;o &quot;&amp;dia&amp;&quot;/&quot;&amp;mes&amp;&quot;/?&quot;" newline="True"/>
+                            <input variable="a&#241;o"/>
+                            <output expression="&quot;su fecha es: &quot;&amp;dia&amp;&quot;/&quot;&amp;mes&amp;&quot;/&quot;&amp;a&#241;o" newline="True"/>
+                            <output expression="&quot;fecha valida&quot;" newline="True"/>
+                        </then>
+                        <else>
+                            <output expression="&quot;fecha invalida&quot;" newline="True"/>
+                        </else>
+                    </if>
+                </then>
+                <else>
+                    <output expression="&quot;fecha invalida&quot;" newline="True"/>
+                </else>
+            </if>
+        </body>
+    </function>
+</flowgorithm>
