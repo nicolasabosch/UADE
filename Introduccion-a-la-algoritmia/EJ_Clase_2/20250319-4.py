@@ -1,0 +1,12 @@
+num=int(input("¿De que numero queres saber la tabla?"))
+
+print(num, "X 1 es",num*1)
+print(num, "X 2 es",num*2)
+print(num, "X 3 es",num*3)
+print(num, "X 4 es",num*4)
+print(num, "X 5 es",num*5)
+print(num, "X 6 es",num*6)
+print(num, "X 7 es",num*7)
+print(num, "X 8 es",num*8)
+print(num, "X 9 es",num*9)
+print(num, "X 10 es",num*10)

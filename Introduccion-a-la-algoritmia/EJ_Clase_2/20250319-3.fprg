@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="20250319-3"/>
+        <attribute name="authors" value="xarb034"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2025-03-19 11:40:00 a.&#160;m."/>
+        <attribute name="created" value="eGFyYjAzNDtBUkJBLVhBUkIwMzQ7MjAyNS0wMy0xOTsxMToyMjozMyBhLsKgbS47MjkzNA=="/>
+        <attribute name="edited" value="eGFyYjAzNDtBUkJBLVhBUkIwMzQ7MjAyNS0wMy0xOTsxMTo0MDowMCBhLsKgbS47MTszMDM2"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="montoFactura, montoContado, montoEnCuotas" type="Integer" array="False" size=""/>
+            <declare name="montoCuota" type="Real" array="False" size=""/>
+            <declare name="metodoDePago" type="String" array="False" size=""/>
+            <output expression="&quot;&#191;Cual es el monto de la factura?&quot;" newline="True"/>
+            <input variable="montoFactura"/>
+            <output expression="&quot;&#191;Pagas en efectivo o en cuotas?&quot;" newline="True"/>
+            <input variable="metodoDePago"/>
+            <assign variable="montoContado" expression="montoFactura*0.85"/>
+            <assign variable="montoEnCuotas" expression="montoFactura*1.20"/>
+            <assign variable="montoCuota" expression="montoEnCuotas/3"/>
+            <if expression="metodoDePago==&quot;efectivo&quot;">
+                <then>
+                    <output expression="&quot;tu factura pagando al contado es de $&quot;&amp;montoContado" newline="True"/>
+                </then>
+                <else>
+                    <output expression="&quot;tu factura pagando en cuotas es de $&quot;&amp;montoEnCuotas&amp;&quot; y el monto de cada cuota es de $&quot;&amp;montoCuota" newline="True"/>
+                </else>
+            </if>
+        </body>
+    </function>
+</flowgorithm>

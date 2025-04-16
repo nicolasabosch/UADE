@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="20250319-4"/>
+        <attribute name="authors" value="xarb034"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2025-03-19 12:05:29 p.&#160;m."/>
+        <attribute name="created" value="eGFyYjAzNDtBUkJBLVhBUkIwMzQ7MjAyNS0wMy0xOTsxMTo0MTowMSBhLsKgbS47MjkzMA=="/>
+        <attribute name="edited" value="eGFyYjAzNDtBUkJBLVhBUkIwMzQ7MjAyNS0wMy0xOTsxMjowNToyOSBwLsKgbS47MTszMDY0"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="num, num1, num2, num3, num4, num5, num6, num7, num8, num9, num10" type="Integer" array="False" size=""/>
+            <output expression="&quot;&#191;De que numero queres saber la tabla?&quot;" newline="True"/>
+            <input variable="num"/>
+            <assign variable="num1" expression="num*1"/>
+            <assign variable="num2" expression="num*2"/>
+            <assign variable="num3" expression="num*3"/>
+            <assign variable="num4" expression="num*4"/>
+            <assign variable="num5" expression="num*5"/>
+            <assign variable="num6" expression="num*6"/>
+            <assign variable="num7" expression="num*7"/>
+            <assign variable="num8" expression="num*8"/>
+            <assign variable="num9" expression="num*9"/>
+            <assign variable="num10" expression="num*10"/>
+            <output expression="num&amp;&quot; X 1=&quot;&amp;num1" newline="True"/>
+            <output expression="num&amp;&quot; X 2=&quot;&amp;num2" newline="True"/>
+            <output expression="num&amp;&quot; X 3=&quot;&amp;num3" newline="True"/>
+            <output expression="num&amp;&quot; X 4=&quot;&amp;num4" newline="True"/>
+            <output expression="num&amp;&quot; X 5=&quot;&amp;num5" newline="True"/>
+            <output expression="num&amp;&quot; X 6=&quot;&amp;num6" newline="True"/>
+            <output expression="num&amp;&quot; X 7=&quot;&amp;num7" newline="True"/>
+            <output expression="num&amp;&quot; X 8=&quot;&amp;num8" newline="True"/>
+            <output expression="num&amp;&quot; X 9=&quot;&amp;num9" newline="True"/>
+            <output expression="num&amp;&quot; X 10=&quot;&amp;num10" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>

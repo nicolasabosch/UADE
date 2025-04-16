@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="EJ1_B"/>
+        <attribute name="authors" value="xarb034"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2025-03-17 12:15:31 p.&#160;m."/>
+        <attribute name="created" value="eGFyYjAzNDtBUkJBLVhBUkIwMzQ7MjAyNS0wMy0xNzsxMjowOToxNSBwLsKgbS47Mjk1Mw=="/>
+        <attribute name="edited" value="eGFyYjAzNDtBUkJBLVhBUkIwMzQ7MjAyNS0wMy0xNzsxMjoxNTozMSBwLsKgbS47MTszMDU2"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <output expression="&quot;Camino hacia la esquina&quot;" newline="True"/>
+            <if expression="&quot;color semaforo&quot;">
+                <then>
+                    <comment text="Semaforo verde"/>
+                    <output expression="&quot;Cruzo&quot;" newline="True"/>
+                </then>
+                <else>
+                    <comment text="Semaforo rojo"/>
+                    <output expression="&quot;Espero que se ponga en verde&quot;" newline="True"/>
+                    <output expression="&quot;se pone en verde y cruzo&quot;" newline="True"/>
+                </else>
+            </if>
+        </body>
+    </function>
+</flowgorithm>

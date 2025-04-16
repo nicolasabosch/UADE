@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="20250325-6"/>
+        <attribute name="authors" value="nicol"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2025-03-25 08:02:38 p.&#8239;m."/>
+        <attribute name="created" value="bmljb2w7TklDT0xBUzsyMDI1LTAzLTI1OzA3OjU1OjE1IHAu4oCvbS47MTA3MzU="/>
+        <attribute name="edited" value="bmljb2w7TklDT0xBUzsyMDI1LTAzLTI1OzA4OjAyOjM4IHAu4oCvbS47MTsxMDg0MQ=="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="aportante1, aportante2, aportante3, total" type="Integer" array="False" size=""/>
+            <output expression="&quot;Cuanto aporto el primero&quot;" newline="True"/>
+            <input variable="aportante1"/>
+            <output expression="&quot;Cuanto aporto el segundo&quot;" newline="True"/>
+            <input variable="aportante2"/>
+            <output expression="&quot;Cuanto aporto el tercero&quot;" newline="True"/>
+            <input variable="aportante3"/>
+            <assign variable="total" expression="aportante1 + aportante2 + aportante3"/>
+            <output expression="&quot;El primero aporto el &quot;&amp;aportante1/total*100&amp;&quot;%&quot;" newline="True"/>
+            <output expression="&quot;El segundo aporto el &quot;&amp;aportante2/total*100&amp;&quot;%&quot;" newline="True"/>
+            <output expression="&quot;El tercero aporto el &quot;&amp;aportante3/total*100&amp;&quot;%&quot;" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>

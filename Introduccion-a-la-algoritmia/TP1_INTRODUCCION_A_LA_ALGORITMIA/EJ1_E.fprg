@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="EJ1_E"/>
+        <attribute name="authors" value="xarb034"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2025-03-17 12:27:55 p.&#160;m."/>
+        <attribute name="created" value="eGFyYjAzNDtBUkJBLVhBUkIwMzQ7MjAyNS0wMy0xNzsxMjoyNTowNyBwLsKgbS47Mjk1Mg=="/>
+        <attribute name="edited" value="eGFyYjAzNDtBUkJBLVhBUkIwMzQ7MjAyNS0wMy0xNzsxMjoyNzo1NSBwLsKgbS47MTszMDY1"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <output expression="&quot;Prendo el celular&quot;" newline="True"/>
+            <output expression="&quot;Desbloqueo el celular&quot;" newline="True"/>
+            <output expression="&quot;Entro instagram&quot;" newline="True"/>
+            <output expression="&quot;Tocas boton de subir publicacion&quot;" newline="True"/>
+            <output expression="&quot;Agrego las fotos&quot;" newline="True"/>
+            <output expression="&quot;Toco boton de subir&quot;" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>
