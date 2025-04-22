@@ -1,0 +1,29 @@
+
+
+.columnaCentrada {
+    text-align: center;
+    width: 700px;
+    h2{
+        text-align: start;
+    }
+    
+}
+.columnaIzquierda {
+    width: 260px;
+    align-self:center;
+}
+
+.cuadro{
+    h2 {
+        text-align: left;
+    }
+    border: 2px solid black;
+    height: auto;
+    padding: 25px;
+    display: inline-block;
+    h3 {
+        text-align: left;
+        font-weight: bold;
+    }
+    
+}

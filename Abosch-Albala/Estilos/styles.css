@@ -1,0 +1,13 @@
+p {
+    color: white;
+}
+
+a {
+    color: white;
+}
+
+.bgImg {
+    background-image: linear-gradient(#363737, gray);    
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}
