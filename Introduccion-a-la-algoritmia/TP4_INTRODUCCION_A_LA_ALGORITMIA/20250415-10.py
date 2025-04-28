@@ -1,6 +1,8 @@
 num=int(input("Decime un numero para hacer el factorial: "))
 factorial=num
 
-for i in range(factorial-1,0,-1):
-    factorial*=i
-print("El factorial de", num,"es",factorial)
+ 
+while factorial > 1:
+    num *= factorial - 1
+    factorial -= 1
+print("El factorial de", num,"es",num)

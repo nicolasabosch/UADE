@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="ejercicio 11 primos"/>
+        <attribute name="authors" value="fcfra"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2025-04-16 06:10:56 a.&#160;m."/>
+        <attribute name="created" value="ZmNmcmE7REVTS1RPUC01RVEwTERGOzIwMjUtMDQtMTY7MDU6NDM6MjcgYS7CoG0uOzMxNDg="/>
+        <attribute name="edited" value="ZmNmcmE7REVTS1RPUC01RVEwTERGOzIwMjUtMDQtMTY7MDY6MTA6NTYgYS7CoG0uOzE7MzI1Mw=="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="n, cont, contdiv" type="Integer" array="False" size=""/>
+            <output expression="&quot;mete un numero&quot;" newline="True"/>
+            <input variable="n"/>
+            <assign variable="cont" expression="1"/>
+            <assign variable="contdiv" expression="0"/>
+            <while expression="n+1!=cont">
+                <if expression="n % cont ==0">
+                    <then>
+                        <assign variable="contdiv" expression="contdiv +1"/>
+                    </then>
+                    <else/>
+                </if>
+                <assign variable="cont" expression="cont + 1"/>
+            </while>
+            <if expression="contdiv==2">
+                <then>
+                    <output expression="&quot;el &quot;&amp;n&amp;&quot; es primo&quot;" newline="True"/>
+                </then>
+                <else>
+                    <output expression="&quot;el &quot;&amp;n&amp;&quot; no es primo&quot;" newline="True"/>
+                </else>
+            </if>
+        </body>
+    </function>
+</flowgorithm>
