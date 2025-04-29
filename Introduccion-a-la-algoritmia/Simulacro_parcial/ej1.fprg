@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="ej1"/>
+        <attribute name="authors" value="xarb034"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2025-04-29 05:02:41 p.&#160;m."/>
+        <attribute name="created" value="eGFyYjAzNDtBUkJBLVhBUkIwMzQ7MjAyNS0wNC0yOTswODozMTozMyBhLsKgbS47Mjk0Mg=="/>
+        <attribute name="edited" value="eGFyYjAzNDtBUkJBLVhBUkIwMzQ7MjAyNS0wNC0yOTswNTowMjo0MSBwLsKgbS47NjszMDY0"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="nota, aprobados, promocionados, notaMayor4" type="Integer" array="False" size=""/>
+            <declare name="promedioAprobados" type="Real" array="False" size=""/>
+            <assign variable="notaMayor4" expression="0"/>
+            <assign variable="aprobados" expression="0"/>
+            <assign variable="promocionados" expression="0"/>
+            <output expression="&quot;Que nota te sacaste entre 1 y 10&quot;" newline="True"/>
+            <input variable="nota"/>
+            <while expression="nota!=-1">
+                <if expression="nota &lt;1 or nota &gt; 10">
+                    <then>
+                        <output expression="&quot;ingresa una nota valida&quot;" newline="True"/>
+                    </then>
+                    <else/>
+                </if>
+                <if expression="nota&gt;=1 and nota&lt;4">
+                    <then>
+                        <output expression="&quot;Desaprobaste&quot;" newline="True"/>
+                    </then>
+                    <else/>
+                </if>
+                <if expression="nota &gt;=4 and nota &lt;7">
+                    <then>
+                        <output expression="&quot;Felicitaciones, aprobaste&quot;" newline="True"/>
+                        <assign variable="aprobados" expression="aprobados + 1"/>
+                        <assign variable="notaMayor4" expression="notaMayor4 + nota"/>
+                    </then>
+                    <else/>
+                </if>
+                <if expression="nota &gt;= 7 and nota &lt;=10">
+                    <then>
+                        <output expression="&quot;felicitaciones promocionaste&quot;" newline="True"/>
+                        <assign variable="promocionados" expression="promocionados + 1"/>
+                        <assign variable="aprobados" expression="aprobados +1"/>
+                        <assign variable="notaMayor4" expression="notaMayor4 + nota"/>
+                    </then>
+                    <else/>
+                </if>
+                <output expression="&quot;Quieres agregar otra nota entre 1 y 10?&quot;" newline="True"/>
+                <input variable="nota"/>
+            </while>
+            <assign variable="promedioAprobados" expression="notaMayor4/aprobados"/>
+            <output expression="&quot;El promedio de los aprobados es de: &quot;&amp;promedioAprobados" newline="True"/>
+            <output expression="&quot;La materia la promocionaron: &quot;&amp;promocionados" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>
