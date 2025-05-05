@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="Abosch, Nicolas-Parcial1-Tema1"/>
+        <attribute name="authors" value="xarb034"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2025-04-30 10:17:04 a.&#160;m."/>
+        <attribute name="created" value="eGFyYjAzNDtBUkJBLVhBUkIwMzQ7MjAyNS0wNC0zMDswOTo0MToyMyBhLsKgbS47MjkzNQ=="/>
+        <attribute name="edited" value="eGFyYjAzNDtBUkJBLVhBUkIwMzQ7MjAyNS0wNC0zMDsxMDoxNzowNCBhLsKgbS47MTg7MzA5Mw=="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="ancho, sumaAnchos, cantProducto, anchoMayor60" type="Integer" array="False" size=""/>
+            <declare name="promedioAnchos" type="Real" array="False" size=""/>
+            <assign variable="sumaAnchos" expression="0"/>
+            <assign variable="cantProducto" expression="0"/>
+            <assign variable="anchoMayor60" expression="0"/>
+            <output expression="&quot;Cual es el ancho del articulo?&quot;" newline="True"/>
+            <input variable="ancho"/>
+            <while expression="ancho==0">
+                <output expression="&quot;Para empezar ingresa un ancho distinto de 0&quot;" newline="True"/>
+                <input variable="ancho"/>
+            </while>
+            <while expression="ancho!=0">
+                <if expression="ancho&gt;=45 and ancho&lt;=95">
+                    <then>
+                        <assign variable="cantProducto" expression="cantProducto+1"/>
+                        <assign variable="sumaAnchos" expression="sumaAnchos+ancho"/>
+                        <if expression="ancho&gt;60">
+                            <then>
+                                <assign variable="anchoMayor60" expression="anchoMayor60+1"/>
+                            </then>
+                            <else/>
+                        </if>
+                    </then>
+                    <else>
+                        <output expression="&quot;Ancho invalido&quot;" newline="True"/>
+                    </else>
+                </if>
+                <output expression="&quot;&#191;Quieres ingresar otro ancho? Para dejar de agregar anchos elige 0(cero)&quot;" newline="True"/>
+                <input variable="ancho"/>
+            </while>
+            <assign variable="promedioAnchos" expression="sumaAnchos/cantProducto"/>
+            <output expression="&quot;Hay &quot;&amp;anchoMayor60&amp;&quot; ventanales con ancho mayor 60&quot;" newline="True"/>
+            <output expression="&quot;El promedio de ancho de los ventanales valido es de &quot;&amp;promedioAnchos&amp;&quot;CM&quot;" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>
