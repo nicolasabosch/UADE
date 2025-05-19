@@ -16,10 +16,10 @@
     <div class="container">
         <div class="row">
             <header class="col-12">Header</header>
-            <div class="col-12 col-sm-6 col-md-4 col1 text-sm-start">1</div>
-            <div class="col-12 col-sm-6 col-md-4 col2 text-sm-end">2</div>
-            <div class="col-12 col-sm-12 col-md-4 col3">3</div>
-            <footer class="col-12 col-md-6 text-md-end text-center">Footer 1</footer>
+            <div class="col-12 col-sm-6 col-md-4 col1 text-sm-start text-md-center">1</div>
+            <div class="col-12 col-sm-6 col-md-4 col2 text-center text-sm-end text-md-center">2</div>
+            <div class="col-12 col-sm-12 col-md-4 col3 text-end text-sm-center text-md-center">3</div>
+            <footer class="col-12 col-md-6 text-md-end text-center footer1">Footer 1</footer>
             <footer class="col-12 col-md-6 text-md-start text-center">Footer 2</footer>
         </div>
     </div>
@@ -29,12 +29,13 @@
         footer {
             background-color: yellow;
             padding: 10px;
+            border: 2px solid gray;
 
         }
 
 
 
-        @media screen and (min-width: 992px) {
+        @media screen and (min-width: 768px) {
             footer {
                 border: 2px solid gray;
             }
@@ -93,6 +94,39 @@
                 border: 2px solid grey;
             }
 
+        }
+        @media screen and (max-width: 576px) {
+            header {
+                background-color:coral;
+                padding: 10px;
+                border: 2px solid grey;
+            }
+            .col1 {
+                background-color: red;
+                padding: 10px;
+                height: 200px;
+                font-size: 50px;
+                border: 2px solid gray;
+            }
+            .col2 {
+                background-color: aqua;
+                padding: 10px;
+                height: 200px;
+                font-size: 50px;
+                border: 2px solid gray;
+            }
+            .col3 {
+                background-color: red;
+                padding: 10px;
+                height: 200px;
+                font-size: 50px;
+                border: 2px solid gray;
+            }
+            
+            .footer1 {
+                margin-bottom: 10px;
+            }
+            
         }
     </style>
 
