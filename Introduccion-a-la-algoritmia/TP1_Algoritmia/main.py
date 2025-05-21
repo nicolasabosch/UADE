@@ -5,26 +5,26 @@ pedidos=[[0,"Nicolas",["Napolitana", 2]]]
 logueado=False
 iniciado=False
 
-def pedido(usuarioActual, menu, pedidos):
-    for i in range(len(menu)):
-        print(i,menu[i])
+# def pedido(usuarioActual, menu, pedidos):
+#     for i in range(len(menu)):
+#         print(i,menu[i])
 
-    while True:
-            print("¿Qué pizza quieres pedir?")
-            for i in range(len(menu)):
-                print(i,menu[i])
-            pizza = input("Ingrese pizza que desea: ")
-            for i in range(len(menu)):
-                if pizza == menu[i]:
-                    print(pizza, "agregada al pedido")
-                    cantidad=input("cuantas queres pedir?")
-                    break              
-            else:
-                print("Por favor, ingrese un número válido.")
+#     while True:
+#             print("¿Qué pizza quieres pedir?")
+#             for i in range(len(menu)):
+#                 print(i,menu[i])
+#             pizza = input("Ingrese pizza que desea: ")
+#             for i in range(len(menu)):
+#                 if pizza == menu[i]:
+#                     print(pizza, "agregada al pedido")
+#                     cantidad=input("cuantas queres pedir?")
+#                     break              
+#             else:
+#                 print("Por favor, ingrese un número válido.")
             
             
-    idPedido=len(pedidos)+1
-    pedidos.append([idPedido,usuarioActual,[pizza,cantidad]])
+# idPedido=len(pedidos)+1
+# pedidos.append([idPedido,usuarioActual,[pizza,cantidad]])
 
 def login():
     print("Bienvenido a la pizzeria")
