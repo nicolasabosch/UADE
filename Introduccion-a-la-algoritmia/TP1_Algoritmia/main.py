@@ -1,7 +1,13 @@
-usuarios=[[0,"Nicolas", "uade2025", "admin"],[1,"Luana","uba2025","cliente","Tucuman2025"],[2,"Fran","itba2025","cliente,GeneralLopez2560"]]
+usuarios=[[0,"Nicolas", "uade2025", "admin"],[1,"Luana","uba2025","cliente","Tucuman2025"],[2,"Fran","itba2025","cliente,GeneralLopez2560"]] # UserID, Nombre, Contraseña, Tipo de usuario, Dirección
 tipoUsuario=["admin","cliente"]
-menu=["Muzarella","Napolitana","Calabresa","Fugazzeta","Vegetariana","4 Quesos","Peperoni","Barbacoa"]
-pedidos=[[0,"Nicolas",["Napolitana", 2]]]
+idElementoCarta=[0,1,2,3,4,5,6,7] # ID de cada elemento del menú
+elementosCarta=["Muzarella","Napolitana","Calabresa","Fugazzeta","Vegetariana","4 Quesos","Peperoni","Barbacoa"]
+preciosCarta=[1000,1200,1300,1400,1500,1600,1700,1800]
+usuarioLogueado=""
+contrasenaLogueada=""
+rolActual=""
+#pedidos=[[0,"Nicolas",["Napolitana", 2]]]
+pedidos=[]
 logueado=False
 iniciado=False
 
@@ -26,15 +32,19 @@ iniciado=False
 # idPedido=len(pedidos)+1
 # pedidos.append([idPedido,usuarioActual,[pizza,cantidad]])
 
-def login():
+def login(usuarios, rolActual):
     print("Bienvenido a la pizzeria")
     usuario = input("Ingrese su nombre de usuario: ")
+    usuarioLogueado=usuario
     contrasena = input("Ingrese su contraseña: ")
+    contrasenaLogueada=contrasena
+    
     
     for i in range(len(usuarios)):
         if usuarios[i][0] == usuario and usuarios[i][1] == contrasena:
+            rolActual=usuarios[i][3]
             print("Bienvenido", usuario)
-            return True, usuarios[i][2]
+            return True
     else:
         print("Usuario o contraseña incorrectos.")
         return False
@@ -42,13 +52,15 @@ def login():
 
 while iniciado==False:
     print("Bienvenido a la pizzeria")
-    logueado, usuarioActual = login()
+    logueado = login()
     
     if logueado==True:
         
-            if usuarioActual=="admin":
+        
+            
+            if rolActual=="admin":
                 
-                print("Bienvenido admin, si quieres agregar un usuario ingresa 1, si quieres eliminar un usuario ingresa 2, si quieres ver los usuarios ingresa 3, si quieres ver los pedidos ingresa 4, si quieres volver ingresa 5")
+                print("1.Agregar usuario, 2. Eliminar un usuario ingresa, 3. Listar usuarios, 4. Ver pedidos, 5. Salir")
                 
                 opcion = input("Seleccione una opción: ")
                 if opcion == "1":
@@ -84,13 +96,13 @@ while iniciado==False:
                 
                 else:
                     print("Opción no válida")
-            elif usuarioActual=="cliente":
+            elif rolActual=="cliente":
                 print("Bienvenido cliente, si quieres ver el menu ingresa 1, si quieres hacer un pedido ingresa 2, si quieres ver tus pedidos ingresa 3")
                 opcion = input("Seleccione una opción: ")
                 if opcion == "1":
                     print("Aquí está el menú.")
-                    for i in range(len(menu)):
-                        print(i,menu[i])
+                    for i in range(len(elementosCarta)):
+                        print(i,elementosCarta[i])
                 elif opcion == "2":
                     nuevoPedido = input("Ingrese su pedido: ")
                     pedidos.append(nuevoPedido)
