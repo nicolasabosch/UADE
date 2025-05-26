@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ejercicio02</title>
+    <script>
+    
+        // Solicitar los tres números al usuario
+        const num1 = parseFloat(prompt("Ingrese el primer número:"));
+        const num2 = parseFloat(prompt("Ingrese el segundo número:"));
+        const num3 = parseFloat(prompt("Ingrese el tercer número:"));
+        
+        let resultado;
+        let operacion;
+        
+        // Verificar la condición
+        if (num1 < num2 && num1 > num3) {
+            resultado = num1 * num2 * num3;
+            operacion = "multiplicación";
+        } else {
+            resultado = num1 + num2 + num3;
+            operacion = "suma";
+        }
+        
+        // Mostrar el resultado y la operación realizada
+        alert("El resultado de la " + operacion + " es: " + resultado);
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
