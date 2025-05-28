@@ -2,7 +2,7 @@ usuarios=[[0,"Nicolas", "uade2025", "admin","Roosevelt2750"],[1,"Luana","uba2025
 idProductos=[0,1,2,3,4,5,6,7] # ID de cada elemento del menú
 nombreProductos=["Muzarella","Napolitana","Calabresa","Fugazzeta","Vegetariana","4 Quesos","Peperoni","Barbacoa"]
 preciosProductos=[1000,1200,1300,1400,1500,1600,1700,1800]
-pedidos=[[0,"Muzarella",2],[0,"Calabresa",1],[1,"Vegetariana",3]] # idUsuario, producto, Cantidad
+pedidos=[[0,0,3],[0,2,1],[1,4,3]] # idUsuario, idProductos, Cantidad
 iniciado=False
 logueado=False
 
@@ -12,37 +12,31 @@ def login(nombreUsuario, contrasena):
         if usuarios[i][1] == nombreUsuario and usuarios[i][2] == contrasena:
             return usuarios[i]
     
-    return None  # If no match found, return False
+    return ""  # If no match found, return blank
         
 def agregarUsuario(nuevoUsuario, nuevaContrasena, nuevoUsuarioRol, nuevoUsuarioDireccion):
-    
-    ultimoUsuario=usuarios[len(usuarios)[0]]
-    idUsuario = ultimoUsuario + 1
+    ultimoUsuario=len(usuarios)-1
+    idUsuario = ultimoUsuario+1
     usuarios.append([idUsuario, nuevoUsuario, nuevaContrasena, nuevoUsuarioRol, nuevoUsuarioDireccion])
     print("Usuario",nuevoUsuario," agregado con éxito.")
  
 def eliminarUsuario(idUsuario):
     eliminado= False
     indice=0
-    mostrarUsuarios()
+    
     while eliminado==False:
         while indice < len(usuarios) and eliminado==False:
             if usuarios[indice][0] == idUsuario:  # Checking the user ID at index 0
-                nombreUsuario = usuarios[indice][1]  # Get the username for confirmation
+                nombreUsuarioEliminar = usuarios[indice][1]  # Get the username for confirmation
                 usuarios.pop(indice)  # Remove the user at the found index
-                print("Usuario", nombreUsuario, "eliminado con éxito.")
+                print("Usuario", nombreUsuarioEliminar, "eliminado con éxito.")
                 eliminado = True
-            indice += 1
+            else:
+                indice = indice + 1
 
 def mostrarUsuarios():
     for i in range(len(usuarios)):
-        print(i, usuarios[i])
-
-
-    for i in range(len(usuarios)):
-        if usuarios[i][1] == nombreUsuario:
-            return usuarios[i][3]  # Return the role of the user
-    return None
+        print(usuarios[i])
 
 def nuevoPedido(idUsuario, idProducto, cantidad):
 
@@ -55,7 +49,7 @@ def mostrarPedidos():
 
 def verMenu():
     for i in range(len(nombreProductos)):
-                print(i,nombreProductos[i])
+                print(nombreProductos[i])
 
 def misPedidos():
     for i in range(len(pedidos)):
@@ -68,19 +62,18 @@ def nombreProductoToIdProducto(nombreProducto):
                 idProducto = idProductos[i]
                 return idProducto
 
-
 print("Bienvenido a la pizzeria")
 while iniciado==False:
     while logueado==False:
         nombreUsuario = input("Ingrese su nombre de usuario: ")
         contrasena = input("Ingrese su contraseña: ")
         usuario = login(nombreUsuario, contrasena)
-        if usuario != None:
+        if usuario != "":
             logueado = True
+            print("Bienvenido", nombreUsuario)
         else:
             print("Usuario o contraseña incorrectos, intente de nuevo.")
-    print("Bienvenido", nombreUsuario)
-    
+    #print("Bienvenido", nombreUsuario)
 
     if usuario[3] == "admin":
 
@@ -95,6 +88,7 @@ while iniciado==False:
             agregarUsuario(nuevoUsuario, nuevaContrasena, nuevoUsuarioRol, nuevoUsuarioDireccion)
 
         elif opcion == "2":
+            mostrarUsuarios()
             idUsuario = int(input("Ingrese el id del usuario a eliminar: "))
             eliminarUsuario(idUsuario)
 
@@ -103,10 +97,10 @@ while iniciado==False:
 
         elif opcion == "4":
             mostrarPedidos()
-            
-        
+                 
         elif opcion == "5":
-            print("Volviendo al menú principal.")
+            print("Saliendo del programa.")
+            iniciado=False
         
         else:
             print("Opción no válida")
@@ -117,7 +111,9 @@ while iniciado==False:
         if opcion == "1":
             print("Aquí está el menú.")
             verMenu()
+        
         elif opcion == "2":
+            verMenu()
             print("Pedido:")
             nombreProducto = input("Ingrese el nombre del producto: ")
             idProducto = nombreProductoToIdProducto(nombreProducto)
@@ -127,6 +123,7 @@ while iniciado==False:
 
         elif opcion == "3":
             misPedidos()
+        
         else:
             print("Opción no válida")
 
