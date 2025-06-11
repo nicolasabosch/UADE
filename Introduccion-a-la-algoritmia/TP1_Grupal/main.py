@@ -1,20 +1,19 @@
 usuarios=[[1,"Nicolas", "uade2025", "admin","Roosevelt2750"],[2,"Luana","uba2025","cliente","Tucuman2025"],[3,"Fran","itba2025","cliente","GeneralLopez2560"]] # UserID, Nombre, Contraseña, Tipo de usuario, Dirección
+
 idProductos=[1,2,3,4,5,6,7,8,] # ID de cada elemento del menú
-estadosPedidos = ["En camino", "En preparación", "Entregado"] # Estados de los pedidos
-
+preciosProductos = [1600, 1400, 1200, 1000, 1800, 2000, 2200, 2400] # Precios de cada producto
 productos = ["Pizza Italiana","Pizza Argentina","Pizza Cuatro Quesos","Pizza Muzzarella"]
-precios = [1600, 1400, 1200, 1000]
-id_productos = [1, 2, 3, 4]
-idClientePedido= [1, 2, 3, 4, 5] # ID de cada cliente que hizo un pedido
-idPedidos = [1, 2, 3, 4, 5] # ID de cada pedido
+
+estadosPreparacion = ["En camino", "En preparación", "Entregado"] # Estados de los pedidos
+idEstadosPreparacion = [1, 2, 3] # ID de cada estado de pedido
+
 numeroOrden = [1, 2, 3, 4, 5] # Número de orden de cada pedido
-
-pizzaEnPedido = ["Pizza de champiñones", "Pizza de pepperoni", "Pizza de atún", "Pizza de jamón y queso", "Pizza vegetariana"] # Lista de pizzas en pedidos
-cantidadEnPedido = [1, 2, 1, 3, 2] # Cantidad de cada pizza en pedidos
-
-
-idOrdenes = [1, 2, 3, 4, 5] # ID de cada orden
-pedidos=[]  # List to store orders, each order will be a list of [idUsuario, idProducto, cantidad]
+idOrden = [1, 2, 3, 4, 5] # ID de cada pedido
+idProductosOrden = [1, 2, 3, 4, 5] # ID de cada orden
+idClienteOrden= [1, 2, 3, 4, 5] # ID de cada cliente que hizo un pedido
+cantProductoOrden = [1, 2, 1, 3, 2] # Cantidad de cada pizza en pedidos
+idEstadosPreparacionOrden=[1,3,2,1,3] # Estado de cada orden por ID
+precioPedido = [1600, 1400, 1200, 1000, 1800] # Precio de cada pedido
 
 iniciado=False
 logueado=False
@@ -79,46 +78,95 @@ def mostrarUsuarios():
     for i in range(len(usuarios)):
         print(usuarios[i])
 
-def nuevoPedido(idUsuario, idProducto, cantidad):
+def nuevoPedido(idUsuario, cantidad, idProducto):
+    hacerPedido= True
+    nuevonumeroOrden = len(numeroOrden) + 1  # Increment the order number
 
-    pedidos.append([idUsuario, idProducto, cantidad])
-    print("Pedido agregado con éxito.")
+    while hacerPedido:
+        nuevoidOrden = len(idOrden) + 1  # Increment the order ID
+        estadoPedido = 1  # Default state is "En preparacion"
+        precio = preciosProductos[idProducto - 1] * cantidad  # Calculate total price for the order
+        
+        idOrden.append(nuevoidOrden)
+        idProductosOrden.append(idProducto)  # Append the product ID to the order list
+        idClienteOrden.append(idUsuario)
+        cantProductoOrden.append(cantidad)
+        idEstadosPreparacionOrden.append(estadoPedido)
+        numeroOrden.append(nuevonumeroOrden)
+        precioPedido.append(precio)  # Append the price to the order list
+        otroPedido = input("¿Quieres hacer otro pedido? (si/no) ")
+        if otroPedido != "si":
+            hacerPedido = False
+
+def modificarPedido(idPedido, nuevoEstado):
+    if idPedido < 1 or idPedido > len(numeroOrden):
+        print("ID de pedido inválido.")
+    else:
+        print("Aca hay q modificar el pedido")
+
+def cancelarPedido(idPedido):
+    if idPedido < 1 or idPedido > len(numeroOrden):
+        print("ID de pedido inválido.")
+    else:
+        posicionPedido = idPedido - 1  # Adjust for zero-based index
+        numeroOrden.pop(posicionPedido)  
+        idOrden.pop(posicionPedido)
+        idProductosOrden.pop(posicionPedido)
+        idClienteOrden.pop(posicionPedido)
+        cantProductoOrden.pop(posicionPedido)
+        idEstadosPreparacionOrden.pop(posicionPedido)
+        precioPedido.pop(posicionPedido)
+        print("Pedido cancelado con éxito.")
 
 def mostrarPedidos():
-    for i in range(len(pedidos)):
-        print(i, pedidos[i])
+    for i in range(len(numeroOrden)):
+        print(i, numeroOrden[i])
+
+def estadosDePreparacion():
+    for i in range(len(idEstadosPreparacion)):
+        print(idEstadosPreparacion[i], estadosPreparacion[i])        
 
 def misPedidos():
-    for i in range(len(pedidos)):
-        if pedidos[i][0] == usuario[0]:
-            print("Producto:",pedidos[i][1],"Cantidad:",pedidos[i][2])
+    for i in range(len(numeroOrden)):
+        if idClienteOrden[i] == usuario[0]:
+            print("Producto:", productos[i], "Cantidad:", cantProductoOrden[i], "Estado:", estadosPreparacion[idEstadosPreparacionOrden[i] - 1], "Precio:", precioPedido[i])
 
 def agregarProducto(nombreProducto, precioProducto):
     productos.append(nombreProducto)
-    precios.append(precioProducto)
-    nuevo_id = len(id_productos) + 1
-    id_productos.append(nuevo_id)
+    preciosProductos.append(precioProducto)
+    nuevoId = len(idProductos) + 1
+    idProductos.append(nuevoId)
 
 def eliminarProducto(idProducto):
     if idProducto < 1 or idProducto > len(productos):
         print("ID de producto inválido.")
     else:
-        productos.pop(idProducto - 1)  # Adjust for zero-based index
-        precios.pop(idProducto - 1)
-        id_productos.pop(idProducto - 1)
+        posicionProducto = idProducto - 1  # Adjust for zero-based index
+        productos.pop(posicionProducto)  
+        preciosProductos.pop(posicionProducto)
+        idProductos.pop(posicionProducto)
         print("Producto eliminado con éxito.")
 
 def modificarProducto(idProducto, nuevoNombre, nuevoPrecio):
     if idProducto < 1 or idProducto > len(productos):
         print("ID de producto inválido.")
     else:
-        productos[idProducto - 1] = nuevoNombre  # Adjust for zero-based index
-        precios[idProducto - 1] = nuevoPrecio
+        posicionProducto = idProducto - 1  # Adjust for zero-based index
+        productos[posicionProducto] = nuevoNombre
+        preciosProductos[posicionProducto] = nuevoPrecio
         print("Producto modificado con éxito.")
 
 def listarProductos():
     for i in range(len(productos)):
-        print(id_productos[i], "Producto:", productos[i], "Precio:", precios[i])
+        print(idProductos[i], "Producto:", productos[i], "Precio:", preciosProductos[i])
+
+def modificarEstadoPreparacionPedido(idPedido, nuevoEstado):
+    if idPedido < 1 or idPedido > len(numeroOrden):
+        print("ID de pedido inválido.")
+    else:
+        posicionPedido = idPedido - 1  # Adjust for zero-based index
+        idEstadosPreparacionOrden[posicionPedido] = nuevoEstado
+        print("Estado del pedido modificado con éxito.")
 
 print("Bienvenido a la pizzeria")
 while iniciado==False:
@@ -135,7 +183,7 @@ while iniciado==False:
 
     if usuario[3] == "admin":
 
-        print("1.Agregar usuario, 2. Eliminar un usuario, 3. Listar usuarios, 4. Ver pedidos, 5. Modificar usuario, 6. Agregar productos, 7. Listar productos, 8. Modificar productos, 9. Eliminar productos, 0. Salir")
+        print("1.Agregar usuario, 2. Eliminar un usuario, 3. Listar usuarios, 4. Ver pedidos, 5. Modificar usuario, 6. Agregar productos, 7. Listar productos, 8. Modificar productos, 9. Eliminar productos, 10. Modificar estado pedido, 0. Salir")
         opcion = input("Seleccione una opción: ")
         
         if opcion == "1":
@@ -178,11 +226,21 @@ while iniciado==False:
         elif opcion == "9":
             idProducto = int(input("Ingrese el ID del producto a eliminar: "))
             eliminarProducto(idProducto)
+        
+        elif opcion == "10":
+            
+            idPedido = int(input("Ingrese el ID del pedido a modificar: "))
+            print("Estados disponibles:")
+            estadosDePreparacion()
+            nuevoEstado = int(input("Ingrese el nuevo estado del pedido (1-3): "))
+            modificarEstadoPreparacionPedido(idPedido, nuevoEstado)
+        
         else:
             print("Opción no válida")
 
     elif usuario[3] == "cliente":
-        opcion = input("Selecciona una opción. 1. Menu, 2. Hacer un pedido, 3. Ver tus pedidos: ")
+        opcion = input("Selecciona una opción. 1. Menu, 2. Hacer un pedido, 3. Modificar un pedido, 4. Cancelar un pedido, 5. Ver mis pedidos, 0. Salir: ")
+        
         if opcion == "1":
             print("Aquí está el menú.")
             listarProductos()
@@ -190,18 +248,23 @@ while iniciado==False:
         elif opcion == "2":
             listarProductos()
             print("Pedido:")
-            nombreProducto = input("Ingrese el nombre del producto: ")
-            #hacer pedido
+            idProducto = int(input("Ingresa el ID del producto que deseas pedir: "))
+            cantidad = int(input("¿Cuántas pizzas deseas pedir? "))
+            nuevoPedido(usuario[0], cantidad, idProducto)
+            print("Orden realizada con éxito.")
 
-            cantidad = int(input("Ingrese la cantidad: "))
-            nuevoPedido(usuario[0], idProducto, cantidad)
 
         elif opcion == "3":
+            misPedidos()
+            opcionModificar = input("¿Qué deseas modificar? 1. Cantidad del pedido, ")
+        
+        elif opcion=="4":
+            misPedidos()
+            idPedido = int(input("Ingrese el ID del pedido que desea cancelar: "))
+            cancelarPedido(idPedido)
+        
+        elif opcion == "5":
             misPedidos()
         
         else:
             print("Opción no válida")
-
-    else:
-        print("No existe el tipo de usuario ingresado, intente de vuelta.")
-
