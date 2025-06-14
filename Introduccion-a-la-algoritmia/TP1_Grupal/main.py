@@ -22,24 +22,38 @@ logueado=False
 
 def sugerirProducto():
     sugerirProducto = True
+    salir=False
     while sugerirProducto:
         sugerencia = random.randint(0, len(productos)-1)
         print("Te sugiero pedir:", productos[sugerencia])
-        respuesta = input("¿Quieres pedir este producto? (si/no): ")
-        while respuesta!= "si" and respuesta != "no":
-            respuesta = input("Respuesta no válida. Por favor, responde con 'si' o 'no': ")
-        if respuesta == "si":
-            print("Excelente elección, el producto será añadido a tu pedido.")
-            id_Producto = sugerencia
-            sugerirProducto = False
-        elif respuesta == "no":
-            print("Entendido, te daré otra sugerencia.")
+        respuesta = input("¿Quieres pedir este producto? (si/no). si quieres salir escribe 'salir': ")
+        while respuesta != "si" and respuesta != "no" and salir == False:
+
+            if respuesta == "salir":
+                salir = True
+                sugerirProducto = False
+                id_Producto=""
+            if respuesta == "si":
+                print("Excelente elección, el producto será añadido a tu pedido.")
+                id_Producto = sugerencia
+                sugerirProducto = False
+            elif respuesta == "no":
+                print("Entendido, te daré otra sugerencia.")
+                sugerencia = random.randint(0, len(productos)-1)
+                print("Te sugiero pedir:", productos[sugerencia])
+                respuesta = input("¿Quieres pedir este producto? (si/no). si quieres salir escribe 'salir': ")
+
+
+            else:
+                print("Respuesta no válida, por favor ingresa 'si', 'no' o 'salir'.")
+                respuesta = input("¿Quieres pedir este producto? (si/no). si quieres salir escribe 'salir': ")
+                
 
     return id_Producto
 
 def login(nombreUsuario, contrasena):
     usuarioEncontrado = False
-    usuario_loggeado = ["incorrecto", "", "", "", ""]  # Default blank user
+    usuario_loggeado = ""  
     numUsuario = 0
     while usuarioEncontrado == False and numUsuario < len(usuarios):
         if usuarios[numUsuario][1] == nombreUsuario and usuarios[numUsuario][2] == contrasena:
@@ -178,7 +192,7 @@ while iniciado==False:#iniciado==false equivale a pedir !iniciado
         nombreUsuario = input("Ingrese su nombre de usuario: ")
         contrasena = input("Ingrese su contraseña: ")
         usuario = login(nombreUsuario, contrasena)
-        if usuario[0] != 'incorrecto':
+        if usuario != "":
             logueado = True
             print("Bienvenido", nombreUsuario)
         else:
@@ -187,50 +201,50 @@ while iniciado==False:#iniciado==false equivale a pedir !iniciado
     if usuario[3] == "admin":
 
         print("0.Salir, 1.Agregar usuario, 2. Eliminar un usuario, 3. Listar usuarios, 4. Ver pedidos, 5. Modificar usuario, 6. Agregar productos, 7. Listar productos, 8. Modificar productos, 9. Eliminar productos, 0. Salir")
-        opcion = input("Seleccione una opción: ")
-        
-        if opcion == "1":
+        opcion = int(input("Seleccione una opción: "))
+
+        if opcion == 1:
             nuevoUsuario = input("Ingrese el nombre del nuevo usuario: ")
             nuevaContrasena = input("Ingrese la contraseña del nuevo usuario: ")
             nuevoUsuarioRol= input("Ingrese el rol del nuevo usuario (admin/cliente): ")
             nuevoUsuarioDireccion = input("Ingrese la dirección del nuevo usuario: ")
             agregarUsuario(nuevoUsuario, nuevaContrasena, nuevoUsuarioRol, nuevoUsuarioDireccion)
 
-        elif opcion == "2":
+        elif opcion == 2:
             mostrarUsuarios()
             idUsuario = int(input("Ingrese el id del usuario a eliminar: "))
             eliminarUsuario(idUsuario)
 
-        elif opcion == "3":
+        elif opcion == 3:
             mostrarUsuarios()
 
-        elif opcion == "4":
+        elif opcion == 4:
             mostrarPedidos()
-                 
-        elif opcion == "5":
+
+        elif opcion == 5:
             print("Saliendo del programa.")
             iniciado=False
-        
-        elif opcion == "6":
+
+        elif opcion == 6:
             nombreProducto = input("Ingrese el nombre del producto: ")
             precioProducto = float(input("Ingrese el precio del producto: "))
             agregarProducto(nombreProducto, precioProducto)
 
-        elif opcion == "7":
+        elif opcion == 7:
             listarProductos()
-        
-        elif opcion == "8":
+
+        elif opcion == 8:
             listarProductos()
             idProducto = int(input("Ingrese el ID del producto a modificar: "))
             nuevoNombre = input("Ingrese el nuevo nombre del producto: ")
             nuevoPrecio = float(input("Ingrese el nuevo precio del producto: "))
             modificarProducto(idProducto, nuevoNombre, nuevoPrecio)
-        
-        elif opcion == "9":
+
+        elif opcion == 9:
             idProducto = int(input("Ingrese el ID del producto a eliminar: "))
             eliminarProducto(idProducto)
 
-        elif opcion == "0":
+        elif opcion == 0:
             print("Saliendo del programa.")
             iniciado=True 
 
@@ -238,40 +252,58 @@ while iniciado==False:#iniciado==false equivale a pedir !iniciado
             print("Opción no válida")
 
     elif usuario[3] == "cliente":
+        enPedido = True
+        productoElegido=False
         opcion = int(input("Selecciona una opción. 1. Menu, 2. Hacer un pedido, 3. Ver tus pedidos, 0. Salir. "))
-        while opcion != 0 :
-            if opcion == 1:
-                print("Aquí está el menú.")
-                listarProductos()
-            elif opcion == 2:
-                listarProductos()
-                opcionPedido = int(input("Sabes que pedir, o te doy una sugerencia? 1. Sé lo que quiero, 2. Dame una sugerencia. "))
-                if opcionPedido == 2:
-                    id_Producto = sugerirProducto()
-                    print("Producto sugerido:", productos[id_Producto])
-                    cantidad = int(input("Ingrese la cantidad de este producto que desea: "))
-                    while cantidad < 1:
-                        print("Cantidad no válida, debe ser mayor a 0.")
-                        cantidad = int(input("Ingrese la cantidad de este producto que desea: "))
+        
+        if opcion>=1 and opcion <= 3:
+            while opcion != 0:
+                if opcion == 1:
+                    print("Aquí está el menú.")
+                    listarProductos()
+                elif opcion == 2:
+                    while productoElegido == False:
+                        listarProductos()
+                        opcionPedido = int(input("Sabes que pedir, o te doy una sugerencia? 1. Sé lo que quiero, 2. Dame una sugerencia. "))
+                        if opcionPedido == 2:
+                            id_Producto = sugerirProducto()
+                            if id_Producto != "":
+                                print("Producto sugerido:", productos[id_Producto])
+                                cantidad = int(input("Ingrese la cantidad de este producto que desea: "))
+                                while cantidad < 1:
+                                    print("Cantidad no válida, debe ser mayor a 0.")
+                                    cantidad = int(input("Ingrese la cantidad de este producto que desea: "))
+                                nuevoPedido(usuario[0], id_Producto, cantidad)
+                                productoElegido = True
+                            else:
+                                print("No se seleccionó ningún producto, volviendo al menú principal.")
+                            
 
-                    nuevoPedido(usuario[0], id_Producto, cantidad)
+                        elif opcionPedido == 1:
+                            id_Producto = int(input("Dime el numero de producto que quieres pedir."))
+                            while id_Producto < 1 or id_Producto > len(productos):
+                                print("ID de producto no válido, debe estar entre 1 y", len(productos))
+                                id_Producto = int(input("Dime el numero de producto que quieres pedir."))
+                            cantidad = int(input("Ingrese la cantidad de este producto que desea: "))
+                            while cantidad < 1:
+                                print("Cantidad no válida, debe ser mayor a 0.")
+                                cantidad = int(input("Ingrese la cantidad de este producto que desea: "))
+                            nuevoPedido(usuario[0], id_Producto, cantidad)
+                            
+                        else:
+                            print("Opción inválida, por favor elige 1 o 2.")
 
-                elif opcionPedido == 1:
-                    id_Producto = int(input("Dime el numero de producto que quieres pedir."))
-                    if(id_Producto>1 and id_Producto<=len(productos)):
-                        cantidad = int(input("Ingrese la cantidad: "))
-                        nuevoPedido(usuario[0], id_Producto, cantidad)
-                else:
-                    print("Opción inválida, por favor elige 1 o 2.")
+        else:
+            enPedido = False
                 
 
-            elif opcion == 3:
-                misPedidos()
+    elif opcion == 3:
+        misPedidos()
 
-            elif opcion == 0:
-                print("Saliendo del programa.")
-                iniciado=True        
-            else:
+    elif opcion == 0:
+        print("Saliendo del programa.")
+        iniciado=True        
+    else:
                 print("Opción inválida, ingresa una opcion valida.")
 
     #else:
