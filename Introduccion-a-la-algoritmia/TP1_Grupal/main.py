@@ -10,7 +10,7 @@ idEstadosPreparacion = [1, 2, 3] # ID de cada estado de pedido
 numeroOrden = [1, 2, 3, 4, 5] # Número de orden de cada pedido
 idOrden = [1, 2, 3, 4, 5] # ID de cada pedido
 idProductosOrden = [1, 2, 3, 4, 5] # ID de cada orden
-idClienteOrden= [1, 2, 3, 4, 5] # ID de cada cliente que hizo un pedido
+idClienteOrden= [1, 2, 3, 2, 1] # ID de cada cliente que hizo un pedido
 cantProductoOrden = [1, 2, 1, 3, 2] # Cantidad de cada pizza en pedidos
 idEstadosPreparacionOrden=[1,3,2,1,3] # Estado de cada orden por ID
 precioPedido = [1600, 1400, 1200, 1000, 1800] # Precio de cada pedido
@@ -98,12 +98,6 @@ def nuevoPedido(idUsuario, cantidad, idProducto):
         if otroPedido != "si":
             hacerPedido = False
 
-def modificarPedido(idPedido, nuevoEstado):
-    if idPedido < 1 or idPedido > len(numeroOrden):
-        print("ID de pedido inválido.")
-    else:
-        print("Aca hay q modificar el pedido")
-
 def cancelarPedido(idPedido):
     if idPedido < 1 or idPedido > len(numeroOrden):
         print("ID de pedido inválido.")
@@ -121,6 +115,7 @@ def cancelarPedido(idPedido):
 def mostrarPedidos():
     for i in range(len(numeroOrden)):
         print(i, numeroOrden[i])
+        print("Numero de orden:", idOrden[i], "Producto:", productos[idProductosOrden[i]], "Cliente:", usuarios[idClienteOrden[i]][1], "Cantidad:", cantProductoOrden[i], "Estado:", estadosPreparacion[idEstadosPreparacionOrden[i] - 1], "Precio:", precioPedido[i])
 
 def estadosDePreparacion():
     for i in range(len(idEstadosPreparacion)):
@@ -179,7 +174,6 @@ while iniciado==False:
             print("Bienvenido", nombreUsuario)
         else:
             print("Usuario o contraseña incorrectos, intente de nuevo.")
-    #print("Bienvenido", nombreUsuario)
 
     if usuario[3] == "admin":
 
@@ -239,8 +233,8 @@ while iniciado==False:
             print("Opción no válida")
 
     elif usuario[3] == "cliente":
-        opcion = input("Selecciona una opción. 1. Menu, 2. Hacer un pedido, 3. Modificar un pedido, 4. Cancelar un pedido, 5. Ver mis pedidos, 0. Salir: ")
-        
+        opcion = input("Selecciona una opción. 1. Menu, 2. Hacer un pedido, 3. Cancelar un pedido, 4. Ver mis pedidos, 0. Salir: ")
+
         if opcion == "1":
             print("Aquí está el menú.")
             listarProductos()
@@ -253,17 +247,13 @@ while iniciado==False:
             nuevoPedido(usuario[0], cantidad, idProducto)
             print("Orden realizada con éxito.")
 
-
-        elif opcion == "3":
-            misPedidos()
-            opcionModificar = input("¿Qué deseas modificar? 1. Cantidad del pedido, ")
         
-        elif opcion=="4":
+        elif opcion=="3":
             misPedidos()
             idPedido = int(input("Ingrese el ID del pedido que desea cancelar: "))
             cancelarPedido(idPedido)
         
-        elif opcion == "5":
+        elif opcion == "4":
             misPedidos()
         
         else:
