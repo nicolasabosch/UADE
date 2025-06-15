@@ -62,7 +62,7 @@ def login(nombreUsuario, contrasena):
     return usuario_loggeado  # If no match found, return blank
 
 def agregarUsuario(nuevoUsuario, nuevaContrasena, nuevoUsuarioRol, nuevoUsuarioDireccion):
-    ultimoUsuario=len(usuarios)-1
+    ultimoUsuario=len(usuarios)
     idUsuario = ultimoUsuario+1
     usuarios.append([idUsuario, nuevoUsuario, nuevaContrasena, nuevoUsuarioRol, nuevoUsuarioDireccion])
     print("Usuario",nuevoUsuario," agregado con éxito.")
@@ -85,27 +85,37 @@ def modificarUsuario(idUsuario):
     modificado= False
     indice=0
     print("Que quieres modificar del usuario?")
-    opcion = input("1. Nombre, 2. Contraseña, 3. Rol, 4. Dirección")
-    while modificado==False:
-        while indice < len(usuarios) and modificado==False:
-            if usuarios[indice][0] == idUsuario:  # Checking the user ID at index 0
-               if opcion == "1":
-                   nuevoNombre = input("Ingrese el nuevo nombre: ")
-                   usuarios[indice][1] = nuevoNombre
-               elif opcion == "2":
-                   nuevaContrasena = input("Ingrese la nueva contraseña: ")
-                   usuarios[indice][2] = nuevaContrasena
-               elif opcion == "3":
-                   nuevoRol = input("Ingrese el nuevo rol (admin/cliente): ")
-                   usuarios[indice][3] = nuevoRol
-               elif opcion == "4":
-                   nuevaDireccion = input("Ingrese la nueva dirección: ")
-                   usuarios[indice][4] = nuevaDireccion
-               print("Usuario modificado con éxito.")
-               modificado = True
-            else:
-                indice = indice + 1
+    opcion = int(input("1. Nombre, 2. Contraseña, 3. Rol, 4. Dirección (ingrese el número de la opción): "))
+    while opcion != 1 and opcion != 2 and opcion != 3 and opcion != 4:
+        print("Opción no válida, por favor elige 1, 2, 3 o 4.")
+        opcion = int(input("1. Nombre, 2. Contraseña, 3. Rol, 4. Dirección (ingrese el número de la opción): "))
 
+    while indice < len(usuarios) and modificado==False:
+        if usuarios[indice][0] == idUsuario:  # Checking the user ID at index 0
+            if opcion == 1:
+                nuevoNombre = input("Ingrese el nuevo nombre: ")
+                usuarios[indice][1] = nuevoNombre
+                print("Nombre modificado con éxito.")
+                modificado = True
+            elif opcion == 2:
+                nuevaContrasena = input("Ingrese la nueva contraseña: ")
+                usuarios[indice][2] = nuevaContrasena
+                print("Contraseña modificada con éxito.")
+                modificado = True
+            elif opcion == 3:
+                nuevoRol = input("Ingrese el nuevo rol (admin/cliente): ")
+                while nuevoRol != "admin" and nuevoRol != "cliente":
+                    print("Rol no válido, por favor ingrese 'admin' o 'cliente'.")
+                    nuevoRol = input("Ingrese el nuevo rol (admin/cliente): ")
+                usuarios[indice][3] = nuevoRol
+                print("Rol modificado con éxito.")
+                modificado = True
+            elif opcion == 4:
+                nuevaDireccion = input("Ingrese la nueva dirección: ")
+                usuarios[indice][4] = nuevaDireccion
+        else:
+            indice = indice + 1
+        
 def mostrarUsuarios():
     for i in range(len(usuarios)):
         print(usuarios[i])
@@ -174,7 +184,6 @@ def crearPedido(opcionPedido):
         else:
             print("Opción inválida, por favor elige 1 o 2.")
             
-
 def cancelarPedido(idPedido):
     if idPedido < 1 or idPedido > len(numeroOrden):
         print("ID de pedido inválido.")
@@ -190,9 +199,9 @@ def cancelarPedido(idPedido):
         print("Pedido cancelado con éxito.")
 
 def mostrarPedidos():
-    for i in range(len(numeroOrden)):
-        print(i, numeroOrden[i])
-        print("Numero de orden:", idOrden[i], "Producto:", productos[idProductosOrden[i]], "Cliente:", usuarios[idClienteOrden[i]][1], "Cantidad:", cantProductoOrden[i], "Estado:", estadosPreparacion[idEstadosPreparacionOrden[i] - 1], "Precio:", precioPedido[i])
+    for i in range(len(numeroOrden)-1):
+        
+        print("Numero de orden:", idOrden[i], "Producto:", productos[idProductosOrden[i] - 1], "Cliente:", usuarios[idClienteOrden[i] - 1][1], "Cantidad:", cantProductoOrden[i], "Estado:", estadosPreparacion[idEstadosPreparacionOrden[i] - 1], "Precio:", precioPedido[i])
 
 def estadosDePreparacion():
     for i in range(len(idEstadosPreparacion)):
@@ -246,17 +255,26 @@ while iniciado==True:#iniciado==false equivale a pedir !iniciado
 
         print("0.Salir, 1.Agregar usuario, 2. Eliminar un usuario, 3. Listar usuarios, 4. Ver pedidos, 5. Modificar usuario, 6. Agregar productos, 7. Listar productos, 8. Modificar productos, 9. Eliminar productos, 0. Salir")
         opcion = int(input("Seleccione una opción: "))
+        while opcion < 0 or opcion > 9 or opcion == '':
+            print("Opción no válida, por favor elige una opción entre 0 y 9.")
+            opcion = int(input("Seleccione una opción: "))
 
         if opcion == 1:
             nuevoUsuario = input("Ingrese el nombre del nuevo usuario: ")
             nuevaContrasena = input("Ingrese la contraseña del nuevo usuario: ")
             nuevoUsuarioRol= input("Ingrese el rol del nuevo usuario (admin/cliente): ")
+            while nuevoUsuarioRol != "admin" and nuevoUsuarioRol != "cliente":
+                print("Rol no válido, por favor ingrese 'admin' o 'cliente'.")
+                nuevoUsuarioRol = input("Ingrese el rol del nuevo usuario (admin/cliente): ")
             nuevoUsuarioDireccion = input("Ingrese la dirección del nuevo usuario: ")
             agregarUsuario(nuevoUsuario, nuevaContrasena, nuevoUsuarioRol, nuevoUsuarioDireccion)
 
         elif opcion == 2:
             mostrarUsuarios()
             idUsuario = int(input("Ingrese el id del usuario a eliminar: "))
+            while idUsuario < 1 or idUsuario > len(usuarios):
+                print("ID de usuario no válido, debe estar entre 1 y", len(usuarios))
+                idUsuario = int(input("Ingrese el id del usuario a eliminar: "))
             eliminarUsuario(idUsuario)
 
         elif opcion == 3:
@@ -264,6 +282,14 @@ while iniciado==True:#iniciado==false equivale a pedir !iniciado
 
         elif opcion == 4:
             mostrarPedidos()
+
+        elif opcion == 5:
+            mostrarUsuarios()
+            idUsuario = int(input("Ingrese el ID del usuario a modificar: "))
+            while idUsuario < 1 or idUsuario > len(usuarios):
+                print("ID de usuario no válido, debe estar entre 1 y", len(usuarios))
+                idUsuario = int(input("Ingrese el ID del usuario a modificar: "))
+            modificarUsuario(idUsuario)
 
 
         elif opcion == 6:
