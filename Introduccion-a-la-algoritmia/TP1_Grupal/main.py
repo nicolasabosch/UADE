@@ -17,7 +17,7 @@ cantProductoOrden = [1, 2, 1, 3, 2] # Cantidad de cada pizza en pedidos
 idEstadosPreparacionOrden=[1,3,2,1,3] # Estado de cada orden por ID
 precioPedido = [1600, 1400, 1200, 1000, 1800] # Precio de cada pedido
 
-iniciado=False
+iniciado=True
 logueado=False
 
 def sugerirProducto():
@@ -187,7 +187,7 @@ def listarProductos():
         print(id_productos[i], "Producto:", productos[i], "Precio:", preciosProductos[i])
 
 print("Bienvenido a la pizzeria")
-while iniciado==False:#iniciado==false equivale a pedir !iniciado
+while iniciado==True:#iniciado==false equivale a pedir !iniciado
     while logueado==False:
         nombreUsuario = input("Ingrese su nombre de usuario: ")
         contrasena = input("Ingrese su contraseña: ")
@@ -221,9 +221,6 @@ while iniciado==False:#iniciado==false equivale a pedir !iniciado
         elif opcion == 4:
             mostrarPedidos()
 
-        elif opcion == 5:
-            print("Saliendo del programa.")
-            iniciado=False
 
         elif opcion == 6:
             nombreProducto = input("Ingrese el nombre del producto: ")
@@ -246,22 +243,27 @@ while iniciado==False:#iniciado==false equivale a pedir !iniciado
 
         elif opcion == 0:
             print("Saliendo del programa.")
-            iniciado=True 
+            iniciado=False 
 
         else:
             print("Opción no válida")
 
     elif usuario[3] == "cliente":
-        enPedido = True
-        productoElegido=False
-        opcion = int(input("Selecciona una opción. 1. Menu, 2. Hacer un pedido, 3. Ver tus pedidos, 0. Salir. "))
-        
-        if opcion>=1 and opcion <= 3:
-            while opcion != 0:
+        while iniciado==True:
+            opcion = int(input("Selecciona una opción. 1. Carta, 2. Hacer un pedido, 3. Ver tus pedidos, 0. Salir. "))
+            
+            while opcion < 0 or opcion > 3:
+                print("Opción no válida, por favor elige una opción entre 0 y 3.")
+                opcion = int(input("Selecciona una opción. 1. Carta, 2. Hacer un pedido, 3. Ver tus pedidos, 0. Salir. "))
+
+            while opcion>=1 and opcion <= 3 or opcion == 0:
                 if opcion == 1:
                     print("Aquí está el menú.")
                     listarProductos()
+                    opcion=-1
                 elif opcion == 2:
+                    enPedido = True
+                    productoElegido=False
                     while productoElegido == False:
                         listarProductos()
                         opcionPedido = int(input("Sabes que pedir, o te doy una sugerencia? 1. Sé lo que quiero, 2. Dame una sugerencia. "))
@@ -292,21 +294,12 @@ while iniciado==False:#iniciado==false equivale a pedir !iniciado
                             
                         else:
                             print("Opción inválida, por favor elige 1 o 2.")
-
-        else:
-            enPedido = False
-                
-
-    elif opcion == 3:
-        misPedidos()
-
-    elif opcion == 0:
-        print("Saliendo del programa.")
-        iniciado=True        
-    else:
-                print("Opción inválida, ingresa una opcion valida.")
-
-    #else:
-    #    print("Usuario o Contraseña incorrecta, intente de vuelta.")
-    #   usuario = input("Ingrese el nombre de usuario: ")
-    #   contrasena = input("Ingrese la contraseña: ")
+                elif opcion == 3:
+                    misPedidos()
+                # elif opcion == -1:
+                #     print("Volviendo al menú principal.")
+                elif opcion == 0:
+                    print("Saliendo del programa.")
+                    iniciado=False
+                    opcion=-1
+    
