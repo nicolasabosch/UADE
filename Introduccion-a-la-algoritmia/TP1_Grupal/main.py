@@ -1,24 +1,35 @@
 import random
 
 usuarios=[[1,"Nicolas", "uade2025", "admin","Roosevelt2750"],[2,"Luana","uba2025","cliente","Tucuman2025"],[3,"Fran","itba2025","cliente","GeneralLopez2560"]] # UserID, Nombre, Contraseña, Tipo de usuario, Dirección
-idProductos=[1,2,3,4,5,6,7,8,] # ID de cada elemento del menú
+
 estadosPreparacion = ["En camino", "En preparación", "Entregado"] # Estados de los pedidos
 idEstadosPreparacion = [1, 2, 3] # ID de los estados de preparación
+
 productos = ["Pizza Italiana","Pizza Argentina","Pizza Cuatro Quesos","Pizza Muzzarella"]
 preciosProductos = [1600, 1400, 1200, 1000]
 id_productos = [1, 2, 3, 4]
-idClientePedido= [1, 2, 3, 4, 5] # ID de cada cliente que hizo un pedido
-idPedidos = [1, 2, 3, 4, 5] # ID de cada pedido
-numeroOrden = [1, 2, 3, 4, 5] # Número de orden de cada pedido
-idOrden = [1, 2, 3, 4, 5] # ID de cada pedido
-idProductosOrden = [1, 2, 3, 4, 5] # ID de cada orden
-idClienteOrden= [1, 2, 3, 2, 1] # ID de cada cliente que hizo un pedido
-cantProductoOrden = [1, 2, 1, 3, 2] # Cantidad de cada pizza en pedidos
-idEstadosPreparacionOrden=[1,3,2,1,3] # Estado de cada orden por ID
-precioPedido = [1600, 1400, 1200, 1000, 1800] # Precio de cada pedido
+
+numeroOrden = [1, 2, 3, 4, 5, 5] # Número de orden de cada pedido
+idPedidos = [1, 2, 3, 4, 5, 6] # ID de cada pedido
+idProductosOrden = [1, 2, 3, 4, 1, 2] # ID de cada orden
+idClienteOrden= [1, 2, 3, 2, 1, 4] # ID de cada cliente que hizo un pedido
+cantProductoOrden = [1, 2, 1, 3, 2, 1] # Cantidad de cada pizza en pedidos
+idEstadosPreparacionOrden=[1,3,2,1,3,2] # Estado de cada orden por ID
+precioPedido = [1600, 1400, 1200, 1000, 1800, 2000] # Precio de cada pedido
 
 iniciado=True
 logueado=False
+nuevoNumeroOrden=0 
+
+def listarPedidosActivos():
+    pedidosActivos=0
+    print("Pedidos activos:")
+    for i in range(len(numeroOrden)):
+        if idEstadosPreparacionOrden[i] != 3:  # Exclude delivered orders
+            print("Número de orden:", numeroOrden[i], "ID de orden:", idPedidos[i], "Producto:", productos[idProductosOrden[i] - 1], "Cliente:", usuarios[idClienteOrden[i] - 1][1], "Cantidad:", cantProductoOrden[i], "Estado:", estadosPreparacion[idEstadosPreparacionOrden[i] - 1], "Precio:", precioPedido[i])
+            pedidosActivos += 1
+    if pedidosActivos == 0:
+        print("No hay pedidos activos.")
 
 def sugerirProducto():
     sugerirProducto = True
@@ -67,6 +78,22 @@ def agregarUsuario(nuevoUsuario, nuevaContrasena, nuevoUsuarioRol, nuevoUsuarioD
     usuarios.append([idUsuario, nuevoUsuario, nuevaContrasena, nuevoUsuarioRol, nuevoUsuarioDireccion])
     print("Usuario",nuevoUsuario," agregado con éxito.")
  
+def especialidad():#acá usamos la estadistica, miramos la moda, la pizza mas frecuente
+    pedidosPorPizza=[0]*len(productos)
+    for i in range(len(numeroOrden)):
+        pedidosPorPizza[idProductosOrden[i] - 1] += cantProductoOrden[i]
+    cantidadMasPedida=0#cantidad 
+    for i in range(len(pedidosPorPizza)):
+        if pedidosPorPizza[i] > cantidadMasPedida:
+            cantidadMasPedida = pedidosPorPizza[i]
+    masPedidas=[]
+    for i in range(len(pedidosPorPizza)):
+        if pedidosPorPizza[i] == cantidadMasPedida:
+            masPedidas.append(i)#me guardo los ids
+    print("La/las pizza/s más pedida/s es/son: ")
+    for i in range(len(masPedidas)):
+        print( productos[masPedidas[i]], " con un total de ",cantidadMasPedida," pedidos y tiene un precio de ", preciosProductos[masPedidas[i]], " pesos.")
+
 def eliminarUsuario(idUsuario):
     eliminado= False
     indice=0
@@ -120,23 +147,24 @@ def mostrarUsuarios():
     for i in range(len(usuarios)):
         print(usuarios[i])
 
-def guardarPedido(idUsuario, cantidad, idProducto):
-    hacerPedido= True
-    nuevonumeroOrden = len(numeroOrden) + 1  # Increment the order number
+def guardarPedido(idUsuario, cantidad, idProducto, nuevoNumeroOrden):
+    hacerPedido = True
+    if nuevoNumeroOrden == 0:
+        nuevoNumeroOrden = numeroOrden[len(numeroOrden) - 1] + 1  # Increment the order number
 
     while hacerPedido:
-        nuevoidOrden = len(idOrden) + 1  # Increment the order ID
+        nuevoidPedidos = len(idPedidos) + 1  # Increment the order ID
         estadoPedido = 1  # Default state is "En preparacion"
         precio = preciosProductos[idProducto - 1] * cantidad  # Calculate total price for the order
         
-        idOrden.append(nuevoidOrden)
+        idPedidos.append(nuevoidPedidos)
         idProductosOrden.append(idProducto)  # Append the product ID to the order list
         idClienteOrden.append(idUsuario)
         cantProductoOrden.append(cantidad)
         idEstadosPreparacionOrden.append(estadoPedido)
-        numeroOrden.append(nuevonumeroOrden)
+        numeroOrden.append(nuevoNumeroOrden)
         precioPedido.append(precio)  # Append the price to the order list
-        print("Pedido realizado con éxito. Número de orden:", nuevonumeroOrden, "ID de orden:", nuevoidOrden, "Producto:", productos[idProducto - 1], "Cantidad:", cantidad, "Precio total:", precio)
+        print("Pedido realizado con éxito. Número de orden:", nuevoNumeroOrden, "ID de orden:", nuevoidPedidos, "Producto:", productos[idProducto - 1], "Cantidad:", cantidad, "Precio total:", precio)
         otroPedido = input("¿Quieres hacer otro pedido? (si/no) ")
 
         while otroPedido != "si" and otroPedido != "no":
@@ -144,16 +172,22 @@ def guardarPedido(idUsuario, cantidad, idProducto):
             otroPedido = input("¿Quieres hacer otro pedido? (si/no) ")
 
         if otroPedido == "no":
+            
+            print("Gracias por tu pedido, volverás al menú principal.")
+            nuevoNumeroOrden=0
             hacerPedido = False
+              # Set to True to exit the loop in crearPedido
+            
         elif otroPedido == "si":
             opcionPedido = int(input("Sabes que pedir, o te doy una sugerencia? 1. Sé lo que quiero, 2. Dame una sugerencia. "))
             while opcionPedido < 1 or opcionPedido > 2:
                 print("Opción no válida, por favor elige 1 o 2.")
                 opcionPedido = int(input("Sabes que pedir, o te doy una sugerencia? 1. Sé lo que quiero, 2. Dame una sugerencia. "))
-            crearPedido(opcionPedido)
-            
-def crearPedido(opcionPedido):
-    productoElegido=False
+            crearPedido(opcionPedido, nuevoNumeroOrden, False)
+        
+
+def crearPedido(opcionPedido, nuevoNumeroOrden, productoElegido):
+    
     while productoElegido == False:
         if opcionPedido == 2:
             id_Producto = sugerirProducto()
@@ -163,7 +197,7 @@ def crearPedido(opcionPedido):
                 while cantidad < 1:
                     print("Cantidad no válida, debe ser mayor a 0.")
                     cantidad = int(input("Ingrese la cantidad de este producto que desea: "))
-                guardarPedido(usuario[0], id_Producto, cantidad)
+                guardarPedido(usuario[0], cantidad, id_Producto, nuevoNumeroOrden)
                 productoElegido = True
             else:
                 print("No se seleccionó ningún producto, volviendo al menú principal.")
@@ -171,7 +205,7 @@ def crearPedido(opcionPedido):
             
 
         elif opcionPedido == 1:
-            id_Producto = int(input("Dime el numero de producto que quieres pedir."))
+            id_Producto = int(input("Dime el numero de producto que quieres pedir: "))
             while id_Producto < 1 or id_Producto > len(productos):
                 print("ID de producto no válido, debe estar entre 1 y", len(productos))
                 id_Producto = int(input("Dime el numero de producto que quieres pedir."))
@@ -179,8 +213,8 @@ def crearPedido(opcionPedido):
             while cantidad < 1:
                 print("Cantidad no válida, debe ser mayor a 0.")
                 cantidad = int(input("Ingrese la cantidad de este producto que desea: "))
-            guardarPedido(usuario[0], id_Producto, cantidad)
-            
+            guardarPedido(usuario[0], cantidad, id_Producto, nuevoNumeroOrden)
+
         else:
             print("Opción inválida, por favor elige 1 o 2.")
             
@@ -190,7 +224,7 @@ def cancelarPedido(idPedido):
     else:
         posicionPedido = idPedido - 1  # Adjust for zero-based index
         numeroOrden.pop(posicionPedido)  
-        idOrden.pop(posicionPedido)
+        idPedidos.pop(posicionPedido)
         idProductosOrden.pop(posicionPedido)
         idClienteOrden.pop(posicionPedido)
         cantProductoOrden.pop(posicionPedido)
@@ -198,10 +232,10 @@ def cancelarPedido(idPedido):
         precioPedido.pop(posicionPedido)
         print("Pedido cancelado con éxito.")
 
-def mostrarPedidos():
+def listarPedidos():
     for i in range(len(numeroOrden)-1):
         
-        print("Numero de orden:", idOrden[i], "Producto:", productos[idProductosOrden[i] - 1], "Cliente:", usuarios[idClienteOrden[i] - 1][1], "Cantidad:", cantProductoOrden[i], "Estado:", estadosPreparacion[idEstadosPreparacionOrden[i] - 1], "Precio:", precioPedido[i])
+        print("Numero de orden:", idPedidos[i], "Producto:", productos[idProductosOrden[i] - 1], "Cliente:", usuarios[idClienteOrden[i] - 1][1], "Cantidad:", cantProductoOrden[i], "Estado:", estadosPreparacion[idEstadosPreparacionOrden[i] - 1], "Precio:", precioPedido[i])
 
 def estadosDePreparacion():
     for i in range(len(idEstadosPreparacion)):
@@ -239,8 +273,19 @@ def listarProductos():
     for i in range(len(productos)):
         print(id_productos[i], "Producto:", productos[i], "Precio:", preciosProductos[i])
 
+def cambiarEstadoPedido(numeroOrden, nuevoEstado):
+    if numeroOrden < 1 or numeroOrden > len(estadosPreparacion):
+        print("ID de pedido inválido.")
+    else:
+        posicionPedido = numeroOrden - 1  # Adjust for zero-based index
+        if nuevoEstado < 1 or nuevoEstado > len(estadosPreparacion):
+            print("Estado inválido. Ingrese el numero del nuevo estado del pedido (1. En camino, 2. En preparación, 3. Entregado): ")
+        else:
+            idEstadosPreparacionOrden[posicionPedido] = nuevoEstado
+            print("Estado del pedido actualizado a:", estadosPreparacion[nuevoEstado - 1])
+
 print("Bienvenido a la pizzeria")
-while iniciado==True:#iniciado==false equivale a pedir !iniciado
+while iniciado==True:
     while logueado==False:
         nombreUsuario = input("Ingrese su nombre de usuario: ")
         contrasena = input("Ingrese su contraseña: ")
@@ -253,10 +298,10 @@ while iniciado==True:#iniciado==false equivale a pedir !iniciado
 
     if usuario[3] == "admin":
 
-        print("0.Salir, 1.Agregar usuario, 2. Eliminar un usuario, 3. Listar usuarios, 4. Ver pedidos, 5. Modificar usuario, 6. Agregar productos, 7. Listar productos, 8. Modificar productos, 9. Eliminar productos, 0. Salir")
+        print("0.Salir, 1. Agregar usuario, 2. Eliminar un usuario, 3. Listar usuarios, 4. Ver pedidos, 5. Ver pedidos activos, 6. Modificar usuario, 7. Agregar productos, 8. Listar productos, 9. Modificar productos, 10. Eliminar productos, 11. Cambiar estado de pedido, 12.Ver pizza más pedida")
         opcion = int(input("Seleccione una opción: "))
-        while opcion < 0 or opcion > 9 or opcion == '':
-            print("Opción no válida, por favor elige una opción entre 0 y 9.")
+        while opcion < 0 or opcion > 12:
+            print("Opción no válida, por favor elige una opción entre 0 y 12.")
             opcion = int(input("Seleccione una opción: "))
 
         if opcion == 1:
@@ -281,9 +326,9 @@ while iniciado==True:#iniciado==false equivale a pedir !iniciado
             mostrarUsuarios()
 
         elif opcion == 4:
-            mostrarPedidos()
+            listarPedidos()
 
-        elif opcion == 5:
+        elif opcion == 6:
             mostrarUsuarios()
             idUsuario = int(input("Ingrese el ID del usuario a modificar: "))
             while idUsuario < 1 or idUsuario > len(usuarios):
@@ -291,25 +336,36 @@ while iniciado==True:#iniciado==false equivale a pedir !iniciado
                 idUsuario = int(input("Ingrese el ID del usuario a modificar: "))
             modificarUsuario(idUsuario)
 
+        elif opcion == 5:
+            listarPedidosActivos()
 
-        elif opcion == 6:
+        elif opcion == 7:
             nombreProducto = input("Ingrese el nombre del producto: ")
             precioProducto = float(input("Ingrese el precio del producto: "))
             agregarProducto(nombreProducto, precioProducto)
 
-        elif opcion == 7:
+        elif opcion == 8:
             listarProductos()
 
-        elif opcion == 8:
+        elif opcion == 9:
             listarProductos()
             idProducto = int(input("Ingrese el ID del producto a modificar: "))
             nuevoNombre = input("Ingrese el nuevo nombre del producto: ")
             nuevoPrecio = float(input("Ingrese el nuevo precio del producto: "))
             modificarProducto(idProducto, nuevoNombre, nuevoPrecio)
 
-        elif opcion == 9:
+        elif opcion == 10:
             idProducto = int(input("Ingrese el ID del producto a eliminar: "))
             eliminarProducto(idProducto)
+
+        elif opcion == 11:
+            listarPedidos()
+            idPedido = int(input("Ingrese el ID del pedido a modificar: "))
+            nuevoEstado = int(input("Ingrese el numero del nuevo estado del pedido (1. En camino, 2. En preparación, 3. Entregado): "))
+            cambiarEstadoPedido(idPedido, nuevoEstado)
+
+        elif opcion==12:
+            especialidad()
 
         elif opcion == 0:
             print("Saliendo del programa.")
@@ -332,12 +388,13 @@ while iniciado==True:#iniciado==false equivale a pedir !iniciado
                     listarProductos()
                     opcion=-1
                 elif opcion == 2:
+                    productoElegido = False
                     listarProductos()
                     opcionPedido = int(input("Sabes que pedir, o te doy una sugerencia? 1. Sé lo que quiero, 2. Dame una sugerencia. "))
                     while opcionPedido < 1 or opcionPedido > 2:
                         print("Opción no válida, por favor elige 1 o 2.")
                         opcionPedido = int(input("Sabes que pedir, o te doy una sugerencia? 1. Sé lo que quiero, 2. Dame una sugerencia. "))
-                    crearPedido(opcionPedido)
+                    crearPedido(opcionPedido, nuevoNumeroOrden, productoElegido) #Paso por parametro que no elegi un pedido
                 elif opcion == 3:
                     misPedidos()
                 # elif opcion == -1:
