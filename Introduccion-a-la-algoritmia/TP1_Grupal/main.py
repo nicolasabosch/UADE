@@ -69,7 +69,7 @@ def login(nombreUsuario, contrasena):
             usuario_loggeado = usuarios[numUsuario]
             usuarioEncontrado = True
         numUsuario += 1
-    return usuario_loggeado  # If no match found, return blank
+    return usuario_loggeado  # Si no se encuentra el usuario, devuelve una cadena vacía
 
 def agregarUsuario(nuevoUsuario, nuevaContrasena, nuevoUsuarioRol, nuevoUsuarioDireccion):
     ultimoUsuario=len(usuarios)
@@ -148,24 +148,24 @@ def mostrarUsuarios():
 
 def guardarPedido(idUsuario, cantidad, idProducto, nuevoNumeroOrden):
     
-    nuevoidPedidos = len(idPedidos) + 1  # Increment the order ID
-    estadoPedido = 1  # Default state is "En preparacion"
-    precio = preciosProductos[idProducto - 1] * cantidad  # Calculate total price for the order
-    
-    idPedidos.append(nuevoidPedidos)
-    idProductosOrden.append(idProducto)  # Append the product ID to the order list
-    idClienteOrden.append(idUsuario)
-    cantProductoOrden.append(cantidad)
-    idEstadosPreparacionOrden.append(estadoPedido)
-    numeroOrden.append(nuevoNumeroOrden)
-    precioPedido.append(precio)  # Append the price to the order list
+    nuevoidPedidos = len(idPedidos) + 1  # Incremento el ID del pedido
+    estadoPedido = 1  # El estado por defecto es "En preparación"
+    precio = preciosProductos[idProducto - 1] * cantidad  # Calculo el precio total del pedido
+
+    idPedidos.append(nuevoidPedidos) # Subo a la lista el ID del pedido
+    idProductosOrden.append(idProducto)  # Subo a la lista el ID del producto
+    idClienteOrden.append(idUsuario) # Subo a la lista el ID del cliente
+    cantProductoOrden.append(cantidad) # Subo a la lista la cantidad de productos
+    idEstadosPreparacionOrden.append(estadoPedido) # Subo a la lista el estado del pedido
+    numeroOrden.append(nuevoNumeroOrden) # Subo a la lista el número de orden
+    precioPedido.append(precio)  # Subo a la lista el precio del pedido
     print("Producto agregado con éxito. Número de orden:", nuevoNumeroOrden, "ID de orden:", nuevoidPedidos, "Producto:", productos[idProducto - 1], "Cantidad:", cantidad, "Precio total:", precio)
     
 
 def crearPedido(opcionPedido):
     nuevoNumeroOrden = 0  
     if nuevoNumeroOrden == 0:
-        nuevoNumeroOrden = numeroOrden[len(numeroOrden) - 1] + 1  # Increment the order number
+        nuevoNumeroOrden = numeroOrden[len(numeroOrden) - 1] + 1  # incremento el número de orden para el nuevo pedido
 
     productoElegido = False
     while productoElegido == False:
@@ -219,7 +219,7 @@ def cancelarPedido(idPedido):
     if idPedido < 1 or idPedido > len(numeroOrden):
         print("ID de pedido inválido.")
     else:
-        posicionPedido = idPedido - 1  # Adjust for zero-based index
+        posicionPedido = idPedido - 1  # ajutamos para el índice basado en cero
         numeroOrden.pop(posicionPedido)  
         idPedidos.pop(posicionPedido)
         idProductosOrden.pop(posicionPedido)
@@ -253,7 +253,7 @@ def eliminarProducto(idProducto):
     if idProducto < 1 or idProducto > len(productos):
         print("ID de producto inválido.")
     else:
-        productos.pop(idProducto - 1)  # Adjust for zero-based index
+        productos.pop(idProducto - 1)  # Ajustamos para el índice basado en cero
         preciosProductos.pop(idProducto - 1)
         id_productos.pop(idProducto - 1)
         print("Producto eliminado con éxito.")
@@ -262,7 +262,7 @@ def modificarProducto(idProducto, nuevoNombre, nuevoPrecio):
     if idProducto < 1 or idProducto > len(productos):
         print("ID de producto inválido.")
     else:
-        productos[idProducto - 1] = nuevoNombre  # Adjust for zero-based index
+        productos[idProducto - 1] = nuevoNombre  # Ajustamos para el índice basado en cero
         preciosProductos[idProducto - 1] = nuevoPrecio
         print("Producto modificado con éxito.")
 
@@ -274,7 +274,7 @@ def cambiarEstadoPedido(numeroOrden, nuevoEstado):
     if numeroOrden < 1 or numeroOrden > len(estadosPreparacion):
         print("ID de pedido inválido.")
     else:
-        posicionPedido = numeroOrden - 1  # Adjust for zero-based index
+        posicionPedido = numeroOrden - 1  # Ajustamos para el índice basado en cero
         if nuevoEstado < 1 or nuevoEstado > len(estadosPreparacion):
             print("Estado inválido. Ingrese el numero del nuevo estado del pedido (1. En camino, 2. En preparación, 3. Entregado): ")
         else:
@@ -389,8 +389,7 @@ while iniciado==True:
                 crearPedido(opcionPedido) #Paso por parametro que no elegi un pedido
             elif opcion == 3:
                 misPedidos()
-            # elif opcion == -1:
-            #     print("Volviendo al menú principal.")
+            
             elif opcion == 0:
                 print("Saliendo del programa.")
                 iniciado=False
@@ -401,3 +400,5 @@ while iniciado==True:
                 while opcion < 0 or opcion > 3:
                     print("Opción no válida, por favor elige una opción entre 0 y 3.")
                     opcion = int(input("Selecciona una opción. 1. Carta, 2. Hacer un pedido, 3. Ver tus pedidos, 0. Salir. "))
+
+
