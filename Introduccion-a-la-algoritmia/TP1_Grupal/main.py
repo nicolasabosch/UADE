@@ -1,7 +1,7 @@
 import random
 
-#usuarios=[[1,"Nicolas", "uade2025", "admin","Roosevelt2750"],[2,"Luana","uba2025","cliente","Tucuman2025"],[3,"Fran","itba2025","cliente","GeneralLopez2560"]] # UserID, Nombre, Contraseña, Tipo de usuario, Dirección
-usuarios=[[1,"Nicolas", "uade2025", "admin","Roosevelt2750"],[2,"Luana","uba2025","cliente","Tucuman2025"],[3,"a","a","cliente","GeneralLopez2560"]] # UserID, Nombre, Contraseña, Tipo de usuario, Dirección
+usuarios=[[1,"Nicolas", "uade2025", "admin","Roosevelt2750"],[2,"Luana","uba2025","cliente","Tucuman2025"],[3,"Fran","itba2025","cliente","GeneralLopez2560"]] # UserID, Nombre, Contraseña, Tipo de usuario, Dirección
+
 estadosPreparacion = ["En preparación", "En camino", "Entregado"] # Estados de los pedidos
 idEstadosPreparacion = [1, 2, 3] # ID de los estados de preparación
 
@@ -12,7 +12,7 @@ id_productos = [1, 2, 3, 4]
 numeroOrden = [1, 2, 3, 4, 5, 5] # Número de orden de cada pedido
 idPedidos = [1, 2, 3, 4, 5, 6] # ID de cada pedido
 idProductosOrden = [1, 2, 3, 4, 1, 2] # ID de cada orden
-idClienteOrden= [1, 2, 3, 2, 1, 4] # ID de cada cliente que hizo un pedido
+idClienteOrden= [1, 2, 3, 2, 1, 2] # ID de cada cliente que hizo un pedido
 cantProductoOrden = [1, 2, 1, 3, 2, 1] # Cantidad de cada pizza en pedidos
 idEstadosPreparacionOrden=[1,3,2,1,3,2] # Estado de cada orden por ID
 precioPedido = [1600, 1400, 1200, 1000, 1800, 2000] # Precio de cada pedido
@@ -241,7 +241,7 @@ def estadosDePreparacion():
 def misPedidos():
     for i in range(len(idPedidos)):
         if idClienteOrden[i] == usuario[0]:
-            print("Numero de orden", numeroOrden[i], "Producto:", productos[idProductosOrden[i]-1], "Cantidad:", cantProductoOrden[i], "Estado:", estadosPreparacion[idEstadosPreparacionOrden[i] - 1], "Precio:", precioPedido[i])
+            print("\nNumero de orden", numeroOrden[i], "Producto:", productos[idProductosOrden[i]-1], "Cantidad:", cantProductoOrden[i], "Estado:", estadosPreparacion[idEstadosPreparacionOrden[i] - 1], "Precio:", precioPedido[i],"\n")
 
 def agregarProducto(nombreProducto, precioProducto):
     productos.append(nombreProducto)
@@ -352,6 +352,7 @@ while iniciado==True:
             modificarProducto(idProducto, nuevoNombre, nuevoPrecio)
 
         elif opcion == 10:
+            listarProductos()
             idProducto = int(input("Ingrese el ID del producto a eliminar: "))
             eliminarProducto(idProducto)
 
