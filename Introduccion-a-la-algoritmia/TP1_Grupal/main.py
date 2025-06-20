@@ -1,7 +1,6 @@
 import random
 
 usuarios=[[1,"Nicolas", "uade2025", "admin","Roosevelt2750"],[2,"Luana","uba2025","cliente","Tucuman2025"],[3,"Fran","itba2025","cliente","GeneralLopez2560"]] # UserID, Nombre, Contraseña, Tipo de usuario, Dirección
-
 estadosPreparacion = ["En preparación", "En camino", "Entregado"] # Estados de los pedidos
 idEstadosPreparacion = [1, 2, 3] # ID de los estados de preparación
 
@@ -161,7 +160,6 @@ def guardarPedido(idUsuario, cantidad, idProducto, nuevoNumeroOrden):
     precioPedido.append(precio)  # Subo a la lista el precio del pedido
     print("Producto agregado con éxito. Número de orden:", nuevoNumeroOrden, "ID de orden:", nuevoidPedidos, "Producto:", productos[idProducto - 1], "Cantidad:", cantidad, "Precio total:", precio)
     
-
 def crearPedido(opcionPedido):
     nuevoNumeroOrden = 0  
     if nuevoNumeroOrden == 0:
@@ -212,8 +210,7 @@ def crearPedido(opcionPedido):
                 opcionPedido = int(input("Sabes que pedir, o te doy una sugerencia? 1. Sé lo que quiero, 2. Dame una sugerencia. "))
                 while opcionPedido < 1 or opcionPedido > 2:
                     print("Opción no válida, por favor elige 1 o 2.")
-                    opcionPedido = int(input("Sabes que pedir, o te doy una sugerencia? 1. Sé lo que quiero, 2. Dame una sugerencia. "))
-          
+                    opcionPedido = int(input("Sabes que pedir, o te doy una sugerencia? 1. Sé lo que quiero, 2. Dame una sugerencia. "))      
 
 def cancelarPedido(idPedido):
     if idPedido < 1 or idPedido > len(numeroOrden):
