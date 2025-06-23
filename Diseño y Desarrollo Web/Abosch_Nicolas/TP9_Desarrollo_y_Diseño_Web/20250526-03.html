@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ejercicio03</title>
+    <script>
+    
+        const valorHora = parseFloat(prompt("Ingrese el valor de la hora de trabajo:"));
+        const horasPorDia = parseFloat(prompt("Ingrese la cantidad de horas trabajadas por día:"));
+        const antiguedad = parseInt(prompt("Ingrese la antigüedad en años:"));       
+        const sueldoBruto = valorHora * horasPorDia * 20;
+        const sueldoNeto = sueldoBruto * 0.8;
+        
+        
+        let plusAntiguedad = 0;
+        if (antiguedad >= 5 && antiguedad <= 10) {
+            plusAntiguedad = 1000;
+        } else if (antiguedad > 10) {
+            plusAntiguedad = 1500;
+        }
+        
+        console.log("Valor de la hora: $" + valorHora);
+        console.log("Sueldo Bruto: $" + sueldoBruto);
+        console.log("Sueldo Neto: $" + sueldoNeto);
+        console.log("Plus por Antigüedad: $" + plusAntiguedad);
+        console.log("Total a cobrar: $" + (sueldoNeto + plusAntiguedad));
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
