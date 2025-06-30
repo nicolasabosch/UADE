@@ -1,0 +1,3 @@
+En la nav se encuentran los enlaces a las diferentes secciones del sitio web, permitiendo una fácil navegación entre ellas.
+En la home el unico boton de continuar leyendo es el de Miami
+En la seccion de Miami, el unico boton que funciona es el de Reservar con la compañia Aerolineas Argentinas, el resto de los botones no tienen funcionalidad.
