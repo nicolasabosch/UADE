@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="20250325-12"/>
+        <attribute name="authors" value="nicol"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2025-03-25 08:53:32 p.&#8239;m."/>
+        <attribute name="created" value="bmljb2w7TklDT0xBUzsyMDI1LTAzLTI1OzA4OjM4OjAyIHAu4oCvbS47MTA3MzM="/>
+        <attribute name="edited" value="bmljb2w7TklDT0xBUzsyMDI1LTAzLTI1OzA4OjUzOjMyIHAu4oCvbS47MTsxMDg0MQ=="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="cantDinero, billetes1000, billetes500, billetes100, billetes50, billetes10, billetes5, billetes1" type="Integer" array="False" size=""/>
+            <output expression="&quot;Ingrese la cantidad de dinero&quot;" newline="True"/>
+            <input variable="cantDinero"/>
+            <assign variable="billetes1000" expression="cantDinero/1000"/>
+            <assign variable="cantDinero" expression="cantDinero%1000"/>
+            <assign variable="billetes500" expression="cantDinero/500"/>
+            <assign variable="cantDinero" expression="cantDinero%500"/>
+            <assign variable="billetes100" expression="cantDinero/100"/>
+            <assign variable="cantDinero" expression="cantDinero%100"/>
+            <assign variable="billetes50" expression="cantDinero/50"/>
+            <assign variable="cantDinero" expression="cantDinero%50"/>
+            <assign variable="billetes10" expression="cantDinero/10"/>
+            <assign variable="cantDinero" expression="cantDinero%10"/>
+            <assign variable="billetes5" expression="cantDinero%5"/>
+            <assign variable="billetes1" expression="cantDinero/1"/>
+            <output expression="&quot;son &quot;&amp;billetes1000&amp;&quot; billetes de 1000 &quot;&amp;billetes500&amp;&quot; billetes de 500 &quot;&amp;billetes100&amp;&quot; billetes de 100 &quot;&amp;billetes50&amp;&quot; billetes de 50 &quot;&amp;billetes10&amp;&quot; billetes de 10 &quot;&amp;billetes5&amp;&quot; billetes de 5 &quot;&amp;billetes1&amp;&quot; billetes de 1&quot;" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>

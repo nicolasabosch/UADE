@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ejercicios de RWD</title>
+  <style>
+    /* Estilos base (pueden modificarse según lo aprendido) */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+
+
+    @media screen and (min-width:960px) {
+
+      .ejercicio-1 {
+        background-color: yellow;
+      }
+
+    }
+
+    @media screen and (max-width:600px) {
+
+      .ejercicio-2 {
+        font-size: 20px;
+      }
+
+    }
+
+    @media screen and (orientation:portrait) {
+
+      .ejercicio-3 {
+        display: none;
+      }
+
+    }
+
+    @media screen and (orientation:landscape) {
+
+      .ejercicio-4 {
+        display: none;
+      }
+
+    }
+@media screen and (max-width: 768px) {
+
+      .ejercicio-5 {
+        flex-direction: column;
+      }
+
+    }
+    @media screen and (min-width:1200px) {
+      
+      .ejercicio-6{
+        .lista-elementos li{
+          margin-bottom: 100px;
+        }
+      }
+      
+    }
+    @media screen and (max-width:576px) {
+      
+      .ejercicio-7{
+        font-family: 'Courier New', Courier, monospace;
+      }
+      
+    }
+
+    @media screen and (max-width:480px) {
+      
+      .ejercicio-8{
+        .imagen-responsiva{
+          width: 100%;
+          height: auto;
+        }
+      }
+      
+    }
+
+    @media screen and (max-width:375px) {
+      
+      .ejercicio-9{
+        .menu-navegacion{
+          display: none;
+        }
+        
+      }
+      
+    }
+
+
+    .contenedor {
+      border: 1px solid #ccc;
+      margin-bottom: 20px;
+      padding: 10px;
+    }
+
+    .barra-lateral,
+    .barra-navegacion {
+      background-color: #f0f0f0;
+      padding: 10px;
+    }
+
+    .columnas {
+      display: flex;
+      gap: 10px;
+    }
+
+    .columna {
+      flex: 1;
+      padding: 10px;
+      background-color: #e0e0e0;
+    }
+
+    .lista-elementos li {
+      margin-bottom: 10px;
+    }
+
+    /* Los alumnos deberán agregar aquí los media queries según las consignas */
+  </style>
+</head>
+
+<body>
+
+  <!-- Ejercicio 1 -->
+  <div class="contenedor ejercicio-1">
+    <p>Cambia el color de fondo para pantallas grandes (mínimo 960px).</p>
+  </div>
+
+  <!-- Ejercicio 2 -->
+  <div class="contenedor ejercicio-2">
+    <p class="texto-principal">Aumentar tamaño de fuente para pantallas pequeñas (máximo 600px).</p>
+  </div>
+
+  <!-- Ejercicio 3 -->
+  <div class="contenedor ejercicio-3">
+    <div class="barra-lateral">Ocultar esta barra en orientación vertical (portrait).</div>
+  </div>
+
+  <!-- Ejercicio 4 -->
+  <div class="contenedor ejercicio-4">
+    <div class="barra-navegacion">Mostrar esta barra de navegación solo en orientación horizontal (landscape).</div>
+  </div>
+
+  <!-- Ejercicio 5 -->
+  <div class="contenedor ejercicio-5 columnas">
+    <div class="columna">Columna 1</div>
+    <div class="columna">Columna 2</div>
+  </div>
+
+  <!-- Ejercicio 6 -->
+  <div class="contenedor ejercicio-6">
+    <ul class="lista-elementos">
+      <li>Elemento 1</li>
+      <li>Elemento 2</li>
+      <li>Elemento 3</li>
+    </ul>
+  </div>
+
+  <!-- Ejercicio 7 -->
+  <div class="contenedor ejercicio-7">
+    <h1 class="titulo">Cambiar tipografía del título en pantallas pequeñas (máximo 576px)</h1>
+  </div>
+
+  <!-- Ejercicio 8 -->
+  <div class="contenedor ejercicio-8">
+    <img class="imagen-responsiva" src="paisaje.jpg" alt="Imagen ejemplo">
+  </div>
+
+  <!-- Ejercicio 9 -->
+  <div class="contenedor ejercicio-9">
+    <nav class="menu-navegacion">Este menú de navegación debe ocultarse en pantallas muy pequeñas (máximo 375px)</nav>
+  </div>
+
+</body>
+
+</html>

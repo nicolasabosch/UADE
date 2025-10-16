@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ejercicio07</title>
+    <style>
+        button { margin: 5px; padding: 10px 20px; }
+    </style>
+</head>
+<body>
+    <button onclick="ejercicio01()">Ejercicio 1</button>
+    <button onclick="ejercicio02()">Ejercicio 2</button>
+    <button onclick="ejercicio03()">Ejercicio 3</button>
+    <button onclick="ejercicio04()">Ejercicio 4</button>
+    <button onclick="ejercicio05()">Ejercicio 5</button>
+    <button onclick="ejercicio06()">Ejercicio 6</button>
+
+    <script>
+        function ejercicio01() {
+            var primerNombre = "Nicolas";
+            var apellido = "Abosch";
+            alert("Hola " + primerNombre + " " + apellido);
+        }
+
+        function ejercicio02() {
+            const num1 = parseFloat(prompt("Ingrese el primer número:"));
+            const num2 = parseFloat(prompt("Ingrese el segundo número:"));
+            const num3 = parseFloat(prompt("Ingrese el tercer número:"));
+            
+            let resultado;
+            let operacion;
+            
+            if (num1 < num2 && num1 > num3) {
+                resultado = num1 * num2 * num3;
+                operacion = "multiplicación";
+            } else {
+                resultado = num1 + num2 + num3;
+                operacion = "suma";
+            }
+            alert("El resultado de la " + operacion + " es: " + resultado);
+        }
+
+        function ejercicio03() {
+            const valorHora = parseFloat(prompt("Ingrese el valor de la hora de trabajo:"));
+            const horasPorDia = parseFloat(prompt("Ingrese la cantidad de horas trabajadas por día:"));
+            const antiguedad = parseInt(prompt("Ingrese la antigüedad en años:"));       
+            const sueldoBruto = valorHora * horasPorDia * 20;
+            const sueldoNeto = sueldoBruto * 0.8;
+            
+            let plusAntiguedad = 0;
+            if (antiguedad >= 5 && antiguedad <= 10) {
+                plusAntiguedad = 1000;
+            } else if (antiguedad > 10) {
+                plusAntiguedad = 1500;
+            }
+            
+            let mensaje = "Valor de la hora: $" + valorHora + "\n";
+            mensaje += "Sueldo Bruto: $" + sueldoBruto + "\n";
+            mensaje += "Sueldo Neto: $" + sueldoNeto + "\n";
+            mensaje += "Plus por Antigüedad: $" + plusAntiguedad + "\n";
+            mensaje += "Total a cobrar: $" + (sueldoNeto + plusAntiguedad);
+            alert(mensaje);
+        }
+
+        function ejercicio04() {
+            const numero = prompt("Ingrese un número del 1 al 7:");
+            const dia = parseInt(numero);
+            let resultado = "";
+            switch (dia) {
+                case 1: resultado = "Lunes"; break;
+                case 2: resultado = "Martes"; break;
+                case 3: resultado = "Miércoles"; break;
+                case 4: resultado = "Jueves"; break;
+                case 5: resultado = "Viernes"; break;
+                case 6: resultado = "Sábado"; break;
+                case 7: resultado = "Domingo"; break;
+                default: resultado = "Número inválido. Debe ser un número del 1 al 7.";
+            }
+            alert(resultado);
+        }
+
+        function ejercicio05() {
+            let pares = 0;
+            let impares = 0;
+            let sumaPares = 0;
+            let sumaImpares = 0;
+            
+            for (let i = 0; i < 10; i++) {
+                let numero = parseInt(prompt("Ingrese un numero del 1 al 10:"));
+                if (numero % 2 === 0) {
+                    pares++;
+                    sumaPares += numero;
+                } else {
+                    impares++;
+                    sumaImpares += numero;
+                }
+            }
+            
+            let mensaje = `Números pares: ${pares}\n`;
+            mensaje += `Números impares: ${impares}\n`;
+            mensaje += `Suma de pares: ${sumaPares}\n`;
+            mensaje += `Suma de impares: ${sumaImpares}\n`;
+            
+            if (sumaPares > sumaImpares) {
+                mensaje += "Los números pares tuvieron la suma más alta";
+            } else if (sumaImpares > sumaPares) {
+                mensaje += "Los números impares tuvieron la suma más alta";
+            } else {
+                mensaje += "Ambos grupos tuvieron la misma suma";
+            }
+            alert(mensaje);
+        }
+
+        function ejercicio06() {
+            let numeros = [];
+            let numero = 0;
+            let lista = document.createElement('ol');
+            // Limpiar el body antes de mostrar la lista
+            document.body.innerHTML = `
+                <button onclick="ejercicio01()">Ejercicio 1</button>
+                <button onclick="ejercicio02()">Ejercicio 2</button>
+                <button onclick="ejercicio03()">Ejercicio 3</button>
+                <button onclick="ejercicio04()">Ejercicio 4</button>
+                <button onclick="ejercicio05()">Ejercicio 5</button>
+                <button onclick="ejercicio06()">Ejercicio 6</button>
+            `;
+
+            while (numero <= 10) {
+                numero = parseInt(prompt("Ingrese un número del 1 al 10:"));
+                numeros.push(numero);
+                let item = document.createElement('li');
+                item.textContent = numero;
+                lista.appendChild(item);
+            }
+            alert("Los numeros ingresados son: " + numeros);
+            document.body.appendChild(lista);
+        }
+    </script>
+</body>
+</html>

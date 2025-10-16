@@ -1,0 +1,33 @@
+p {
+    color: white;
+    font-family: Arial, sans-serif;
+}
+a {
+    color: white;
+    text-decoration: none;
+    font-family: Arial, sans-serif;
+}
+
+.nombreCoordenadas{
+    margin-left: 40px;
+}
+
+.navegacion{
+    margin-right: 40px;
+}
+
+.titulo{
+    color: white;
+    font-family: Arial, sans-serif;
+    width: 50%;
+    
+    
+    
+}
+
+.parrafo{
+    color: white;
+    font-family: Arial, sans-serif;
+    width: 50%;
+    
+}

@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="ejercicio 8 flowgo"/>
+        <attribute name="authors" value="fcfra"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2025-04-08 10:14:27 p.&#160;m."/>
+        <attribute name="created" value="ZmNmcmE7REVTS1RPUC1WSEEwOVQ4OzIwMjUtMDQtMDg7MTA6MDU6MzkgcC7CoG0uOzMxNjQ="/>
+        <attribute name="edited" value="ZmNmcmE7REVTS1RPUC1WSEEwOVQ4OzIwMjUtMDQtMDg7MTA6MTQ6MjcgcC7CoG0uOzE7MzI2OQ=="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="a&#241;o" type="Integer" array="False" size=""/>
+            <output expression="&quot;introduzca un a&#241;o&quot;" newline="True"/>
+            <input variable="a&#241;o"/>
+            <if expression="a&#241;o%4==0">
+                <then>
+                    <if expression="a&#241;o%100==0">
+                        <then>
+                            <if expression="a&#241;o%400==0">
+                                <then>
+                                    <output expression="&quot;el a&#241;o es biciesto&quot;" newline="True"/>
+                                </then>
+                                <else>
+                                    <output expression="&quot;el a&#241;o no es biciesto&quot;" newline="True"/>
+                                </else>
+                            </if>
+                        </then>
+                        <else>
+                            <output expression="&quot;el a&#241;o es biciesto&quot;" newline="True"/>
+                        </else>
+                    </if>
+                </then>
+                <else>
+                    <output expression="&quot;el a&#241;o no es biciesto&quot;" newline="True"/>
+                </else>
+            </if>
+        </body>
+    </function>
+</flowgorithm>

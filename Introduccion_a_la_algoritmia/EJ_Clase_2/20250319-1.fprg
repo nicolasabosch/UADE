@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="20250319-1"/>
+        <attribute name="authors" value="xarb034"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2025-03-19 11:16:15 a.&#160;m."/>
+        <attribute name="created" value="eGFyYjAzNDtBUkJBLVhBUkIwMzQ7MjAyNS0wMy0xOTsxMTowOToyNSBhLsKgbS47Mjk0MA=="/>
+        <attribute name="edited" value="eGFyYjAzNDtBUkJBLVhBUkIwMzQ7MjAyNS0wMy0xOTsxMToxNjoxNSBhLsKgbS47MTszMDQ1"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="nombreUsuario" type="String" array="False" size=""/>
+            <declare name="anioNacimientoUsuario, anioActual, edadUsuario" type="Integer" array="False" size=""/>
+            <output expression="&quot;&#191;Cual es tu nombre?&quot;" newline="True"/>
+            <input variable="nombreUsuario"/>
+            <output expression="&quot;&#191;En que a&#241;o naciste?&quot;" newline="True"/>
+            <input variable="anioNacimientoUsuario"/>
+            <assign variable="anioActual" expression="2025"/>
+            <assign variable="edadUsuario" expression="anioActual-anioNacimientoUsuario"/>
+            <output expression="&quot;Hola &quot;&amp;nombreUsuario&amp;&quot; en el a&#241;o &quot;&amp;anioActual&amp;&quot; tendr&#225;s &quot; &amp;edadUsuario&amp;&quot; a&#241;os.&quot;" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>

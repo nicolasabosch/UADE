@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="20250325-11"/>
+        <attribute name="authors" value="nicol"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2025-03-25 08:36:47 p.&#8239;m."/>
+        <attribute name="created" value="bmljb2w7TklDT0xBUzsyMDI1LTAzLTI1OzA4OjE3OjUwIHAu4oCvbS47MTA3MzM="/>
+        <attribute name="edited" value="bmljb2w7TklDT0xBUzsyMDI1LTAzLTI1OzA4OjM2OjQ3IHAu4oCvbS47MTsxMDg0OA=="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="segundosTotales, dias, segundosRestantes, horas, minutos, segundos" type="Integer" array="False" size=""/>
+            <output expression="&quot;Ingrese un periodo en segundos:&quot;" newline="True"/>
+            <input variable="segundosTotales"/>
+            <assign variable="dias" expression="segundosTotales/86400"/>
+            <assign variable="segundosRestantes" expression="segundosTotales%86400"/>
+            <assign variable="horas" expression="segundosRestantes/3600"/>
+            <assign variable="segundosRestantes" expression="segundosRestantes%3600"/>
+            <assign variable="minutos" expression="segundosRestantes/60"/>
+            <assign variable="segundos" expression="segundosRestantes%60"/>
+            <output expression="segundosTotales&amp;&quot; segundos equivalen a &quot;&amp;dias&amp;&quot; dias &quot;&amp;horas&amp;&quot; horas &quot;&amp;minutos&amp;&quot; minutos y &quot;&amp;segundos&amp;&quot; segundos.&quot;" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>

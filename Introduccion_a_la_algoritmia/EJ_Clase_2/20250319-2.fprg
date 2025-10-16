@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="20250319-2"/>
+        <attribute name="authors" value="xarb034"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2025-03-19 11:21:33 a.&#160;m."/>
+        <attribute name="created" value="eGFyYjAzNDtBUkJBLVhBUkIwMzQ7MjAyNS0wMy0xOTsxMToxNzo0NiBhLsKgbS47Mjk0Mg=="/>
+        <attribute name="edited" value="eGFyYjAzNDtBUkJBLVhBUkIwMzQ7MjAyNS0wMy0xOTsxMToyMTozMyBhLsKgbS47MTszMDQx"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="montoFactura, facturaConIva" type="Integer" array="False" size=""/>
+            <output expression="&quot;Ingrese el monto de la factura&quot;" newline="True"/>
+            <input variable="montoFactura"/>
+            <assign variable="facturaConIva" expression="montoFactura*1.21"/>
+            <output expression="&quot;Tu factura con IVA incluido es de $&quot;&amp;facturaConIva" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>
