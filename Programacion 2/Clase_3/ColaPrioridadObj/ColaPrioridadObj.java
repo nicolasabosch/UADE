@@ -5,9 +5,7 @@ class NodoPrioridad {
     public NodoPrioridad(int dato, int prioridad) {
         this.dato = dato;
         this.prioridad = prioridad;
-
     }
-
 }
 
 public class ColaPrioridadObj {
@@ -24,7 +22,6 @@ public class ColaPrioridadObj {
 
     public boolean isEmpty() {
         return cantidad == 0;
-
     }
 
     public boolean isFull() {
@@ -55,9 +52,7 @@ public class ColaPrioridadObj {
 
         for (int i = 0; i < cantidad - 1; i++) {
             cola[i] = cola[i + 1];
-
         }
-
         cantidad--;
         return valor;
     }
