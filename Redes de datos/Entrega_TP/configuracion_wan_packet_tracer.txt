@@ -1,0 +1,317 @@
+CONFIGURACIÓN WAN - PACKET TRACER
+
+Objetivo de la entrega
+Se configuró la red completa con direcciones IP en PCs, laptops e interfaces de router. Además, se resolvieron las conexiones WAN de dos maneras:
+1) Con enlaces seriales y rutas estáticas.
+2) Con enlaces Ethernet y enrutamiento dinámico mediante RIP versión 2.
+
+Todas las redes fueron configuradas con máscara 255.255.255.0 (/24), siguiendo el direccionamiento indicado en el esquema.
+
+------------------------------------------------------------
+1. DIRECCIONAMIENTO GENERAL DE LA RED
+------------------------------------------------------------
+
+Sucursal Buenos Aires
+- Red A: 192.168.0.0/24
+  - Router Buenos Aires Fa0/0: 192.168.0.1
+  - PC0: 192.168.0.2
+  - PC1: 192.168.0.3
+  - Gateway de PC0 y PC1: 192.168.0.1
+
+- Red B: 192.168.10.0/24
+  - Router Buenos Aires Fa0/1: 192.168.10.1
+  - Laptop0: 192.168.10.2
+  - Laptop1: 192.168.10.3
+  - Gateway de Laptop0 y Laptop1: 192.168.10.1
+
+Sucursal Córdoba
+- Red Mendoza: 192.168.20.0/24
+  - Router Córdoba Fa0/0: 192.168.20.1
+  - PC2: 192.168.20.2
+  - PC3: 192.168.20.3
+  - Gateway de PC2 y PC3: 192.168.20.1
+
+- Red Córdoba/Switch3: 192.168.30.0/24
+  - Router Córdoba Fa0/1: 192.168.30.1
+  - PC4: 192.168.30.2
+  - PC5: 192.168.30.3
+  - Gateway de PC4 y PC5: 192.168.30.1
+
+Sucursal Santa Fe
+- Red PC6/PC7: 192.168.40.0/24
+  - Router Santa Fe Fa0/0: 192.168.40.1
+  - PC6: 192.168.40.2
+  - PC7: 192.168.40.3
+  - Gateway de PC6 y PC7: 192.168.40.1
+
+- Red Laptop2/Laptop3: 192.168.50.0/24
+  - Router Santa Fe Fa0/1: 192.168.50.1
+  - Laptop2: 192.168.50.2
+  - Laptop3: 192.168.50.3
+  - Gateway de Laptop2 y Laptop3: 192.168.50.1
+
+Redes WAN
+- Enlace Buenos Aires - Córdoba: 192.168.100.0/24
+  - Router Córdoba Serial: 192.168.100.1
+  - Router Buenos Aires Serial: 192.168.100.2
+
+- Enlace Córdoba - Santa Fe: 192.168.200.0/24
+  - Router Córdoba Serial: 192.168.200.1
+  - Router Santa Fe Serial: 192.168.200.2
+
+------------------------------------------------------------
+2. CONFIGURACIÓN DE PCs Y LAPTOPS
+------------------------------------------------------------
+
+En cada dispositivo final se ingresó a:
+Desktop > IP Configuration
+
+Luego se configuró:
+- IP Address: dirección correspondiente al equipo.
+- Subnet Mask: 255.255.255.0.
+- Default Gateway: dirección IP de la interfaz del router conectada a esa red.
+
+Ejemplo para PC0:
+- IP Address: 192.168.0.2
+- Subnet Mask: 255.255.255.0
+- Default Gateway: 192.168.0.1
+
+Esta configuración permite que cada equipo pueda comunicarse dentro de su propia LAN y también salir hacia otras redes a través del router.
+
+------------------------------------------------------------
+3. CONFIGURACIÓN DE SWITCHES
+------------------------------------------------------------
+
+Los switches 2960 se utilizaron como dispositivos de capa 2 para conectar PCs, laptops y routers dentro de cada red local.
+
+No fue necesario configurar IP en los switches para que la red funcione, ya que solamente reenvían tramas dentro de la LAN. Las PCs y laptops se conectan al switch, y el switch se conecta a la interfaz FastEthernet del router correspondiente.
+
+------------------------------------------------------------
+4. PRIMERA PARTE: WAN CON CONEXIONES SERIALES Y RUTAS ESTÁTICAS
+------------------------------------------------------------
+
+En esta parte se conectaron los routers mediante interfaces seriales. Se configuraron las IP de cada enlace WAN y luego se agregaron rutas estáticas para que cada router conozca las redes que no tiene conectadas directamente.
+
+IMPORTANTE:
+Los nombres de las interfaces pueden cambiar según el módulo colocado en Packet Tracer. Si la interfaz no se llama Serial0/0/0 o Serial0/0/1, se debe usar el nombre que aparezca en el router.
+
+También se debe aplicar el comando clock rate 64000 solamente en el lado DCE del cable serial. Si Packet Tracer no permite el comando, significa que esa interfaz no es DCE.
+
+------------------------------------------------------------
+4.1 Router Buenos Aires
+------------------------------------------------------------
+
+enable
+configure terminal
+hostname Bs_As
+
+interface FastEthernet0/0
+ ip address 192.168.0.1 255.255.255.0
+ no shutdown
+exit
+
+interface FastEthernet0/1
+ ip address 192.168.10.1 255.255.255.0
+ no shutdown
+exit
+
+interface Serial0/0/0
+ ip address 192.168.100.2 255.255.255.0
+ no shutdown
+exit
+
+ip route 192.168.20.0 255.255.255.0 192.168.100.1
+ip route 192.168.30.0 255.255.255.0 192.168.100.1
+ip route 192.168.40.0 255.255.255.0 192.168.100.1
+ip route 192.168.50.0 255.255.255.0 192.168.100.1
+
+end
+copy running-config startup-config
+
+Explicación:
+En Buenos Aires se configuraron las dos redes locales 192.168.0.0 y 192.168.10.0. Además, se configuró el enlace serial hacia Córdoba con la IP 192.168.100.2. Las rutas estáticas indican que para llegar a las redes de Córdoba y Santa Fe, el próximo salto es el router Córdoba, cuya IP serial es 192.168.100.1.
+
+------------------------------------------------------------
+4.2 Router Córdoba
+------------------------------------------------------------
+
+enable
+configure terminal
+hostname Cordoba
+
+interface FastEthernet0/0
+ ip address 192.168.20.1 255.255.255.0
+ no shutdown
+exit
+
+interface FastEthernet0/1
+ ip address 192.168.30.1 255.255.255.0
+ no shutdown
+exit
+
+interface Serial0/0/0
+ ip address 192.168.100.1 255.255.255.0
+ clock rate 64000
+ no shutdown
+exit
+
+interface Serial0/0/1
+ ip address 192.168.200.1 255.255.255.0
+ clock rate 64000
+ no shutdown
+exit
+
+ip route 192.168.0.0 255.255.255.0 192.168.100.2
+ip route 192.168.10.0 255.255.255.0 192.168.100.2
+ip route 192.168.40.0 255.255.255.0 192.168.200.2
+ip route 192.168.50.0 255.255.255.0 192.168.200.2
+
+end
+copy running-config startup-config
+
+Explicación:
+Córdoba funciona como router intermedio entre Buenos Aires y Santa Fe. Tiene dos redes locales, 192.168.20.0 y 192.168.30.0, y dos enlaces seriales: uno hacia Buenos Aires y otro hacia Santa Fe. Las rutas estáticas hacia Buenos Aires salen por 192.168.100.2, mientras que las rutas hacia Santa Fe salen por 192.168.200.2.
+
+------------------------------------------------------------
+4.3 Router Santa Fe
+------------------------------------------------------------
+
+enable
+configure terminal
+hostname Santa_Fe
+
+interface FastEthernet0/0
+ ip address 192.168.40.1 255.255.255.0
+ no shutdown
+exit
+
+interface FastEthernet0/1
+ ip address 192.168.50.1 255.255.255.0
+ no shutdown
+exit
+
+interface Serial0/0/0
+ ip address 192.168.200.2 255.255.255.0
+ no shutdown
+exit
+
+ip route 192.168.0.0 255.255.255.0 192.168.200.1
+ip route 192.168.10.0 255.255.255.0 192.168.200.1
+ip route 192.168.20.0 255.255.255.0 192.168.200.1
+ip route 192.168.30.0 255.255.255.0 192.168.200.1
+
+end
+copy running-config startup-config
+
+Explicación:
+En Santa Fe se configuraron las redes locales 192.168.40.0 y 192.168.50.0. El enlace serial hacia Córdoba usa la red 192.168.200.0. Como Santa Fe no está conectado directamente con Buenos Aires ni con las redes internas de Córdoba, se agregaron rutas estáticas con próximo salto 192.168.200.1.
+
+------------------------------------------------------------
+5. SEGUNDA PARTE: WAN CON CONEXIONES ETHERNET Y ENRUTAMIENTO DINÁMICO
+------------------------------------------------------------
+
+En la segunda parte, las conexiones WAN entre routers se realizan mediante interfaces Ethernet. En lugar de cargar rutas estáticas manualmente, se utiliza un protocolo de enrutamiento dinámico.
+
+Para esta resolución se utilizó RIP versión 2, ya que es simple de configurar en Packet Tracer y permite que los routers aprendan automáticamente las redes de los demás routers.
+
+La ventaja del enrutamiento dinámico es que no hace falta escribir manualmente cada ruta. Cada router anuncia las redes que tiene conectadas y aprende las redes remotas a través de sus vecinos.
+
+------------------------------------------------------------
+5.1 Router Buenos Aires con RIP v2
+------------------------------------------------------------
+
+enable
+configure terminal
+
+router rip
+ version 2
+ no auto-summary
+ network 192.168.0.0
+ network 192.168.10.0
+ network 192.168.100.0
+exit
+
+end
+copy running-config startup-config
+
+Explicación:
+El router Buenos Aires anuncia sus dos redes LAN y la red WAN que lo conecta con Córdoba. De esta manera, los demás routers pueden aprender cómo llegar a las redes 192.168.0.0 y 192.168.10.0.
+
+------------------------------------------------------------
+5.2 Router Córdoba con RIP v2
+------------------------------------------------------------
+
+enable
+configure terminal
+
+router rip
+ version 2
+ no auto-summary
+ network 192.168.20.0
+ network 192.168.30.0
+ network 192.168.100.0
+ network 192.168.200.0
+exit
+
+end
+copy running-config startup-config
+
+Explicación:
+El router Córdoba anuncia sus redes locales y las dos redes WAN, una hacia Buenos Aires y otra hacia Santa Fe. Como está en el medio de la topología, permite que las redes de Buenos Aires y Santa Fe puedan alcanzarse entre sí.
+
+------------------------------------------------------------
+5.3 Router Santa Fe con RIP v2
+------------------------------------------------------------
+
+enable
+configure terminal
+
+router rip
+ version 2
+ no auto-summary
+ network 192.168.40.0
+ network 192.168.50.0
+ network 192.168.200.0
+exit
+
+end
+copy running-config startup-config
+
+Explicación:
+El router Santa Fe anuncia sus redes locales 192.168.40.0 y 192.168.50.0, además de la red WAN que lo conecta con Córdoba. Gracias a RIP v2, aprende automáticamente las redes de Buenos Aires y Córdoba.
+
+------------------------------------------------------------
+6. COMANDOS DE VERIFICACIÓN
+------------------------------------------------------------
+
+Para comprobar que la configuración esté funcionando correctamente, se pueden usar los siguientes comandos en los routers:
+
+show ip interface brief
+Sirve para verificar que las interfaces tengan IP asignada y estén en estado up/up.
+
+show ip route
+Sirve para ver la tabla de enrutamiento. En rutas estáticas aparecerán rutas con la letra S. En RIP v2 aparecerán rutas con la letra R.
+
+show running-config
+Sirve para revisar toda la configuración activa del router.
+
+ping [IP destino]
+Sirve para comprobar conectividad entre equipos de distintas redes.
+
+Ejemplos de pruebas:
+- Desde PC0 hacer ping a PC6: ping 192.168.40.2
+- Desde Laptop0 hacer ping a Laptop3: ping 192.168.50.3
+- Desde PC2 hacer ping a Laptop1: ping 192.168.10.3
+
+Si los pings funcionan, significa que las IP, gateways, enlaces WAN y rutas fueron configurados correctamente.
+
+------------------------------------------------------------
+7. ACLARACIONES FINALES
+------------------------------------------------------------
+
+- Todos los equipos finales deben tener como gateway la IP del router de su propia red.
+- Las interfaces de los routers deben estar activadas con no shutdown.
+- En enlaces seriales, el clock rate se configura únicamente en el extremo DCE.
+- En la parte de rutas estáticas, cada router debe tener rutas hacia las redes que no conoce directamente.
+- En la parte dinámica con RIP v2, no se cargan rutas estáticas, porque los routers aprenden las redes automáticamente.
+- Luego de configurar, se recomienda guardar con copy running-config startup-config.
