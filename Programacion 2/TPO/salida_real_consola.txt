@@ -1,0 +1,47 @@
+=== FARMAGEST — ESCENARIO DE PRUEBA ===
+
+[SETUP] Sucursales registradas: SUC-PALERMO, SUC-BELGRANO
+[SETUP] Medicamentos registrados: IBU-400, IBU-600, DICLOF, AMOX-500, AMOX-750
+[SETUP] Red de sustitutos configurada.
+
+--- PRUEBA 1: Ingreso de lotes ---
+Stock IBU-400  en SUC-PALERMO: 100 u.
+Stock AMOX-500 en SUC-PALERMO: 8 u.
+
+--- PRUEBA 2: Despacho FEFO ---
+Próximo lote a vencer (ANTES): Lote[nro=L001, vence=2025-06-30, cantidad=50, proveedor=ProveedorA]
+Despacho 40u IBU-400: EXITOSO
+Stock IBU-400 tras despacho: 60 u.
+Próximo lote (DESPUÉS del despacho): Lote[nro=L001, vence=2025-06-30, cantidad=10, proveedor=ProveedorA]
+Próximo lote tras agotar L001: Lote[nro=L002, vence=2026-03-15, cantidad=30, proveedor=ProveedorB]
+
+--- PRUEBA 3: Pedido automático por umbral ---
+Pedidos pendientes antes: 0
+[PEDIDO GENERADO] Pedido[id=PED-1, sucursal=SUC-PALERMO, medicamento=AMOX-500, cantidad=100, proveedor=PROVEEDOR_DEFAULT]
+Stock AMOX-500 tras despacho: 4 u.
+Pedidos pendientes después: 1
+
+--- PRUEBA 4: Búsqueda de sustituto disponible ---
+[PEDIDO GENERADO] Pedido[id=PED-2, sucursal=SUC-PALERMO, medicamento=IBU-400, cantidad=100, proveedor=PROVEEDOR_DEFAULT]
+Stock IBU-400 agotado: 0
+Sustituto IBU-400: Medicamento[codigo=DICLOF, nombre=Diclofenac 50mg, droga=Diclofenac, presentacion=Comprimidos x 20]
+[PEDIDO GENERADO] Pedido[id=PED-3, sucursal=SUC-PALERMO, medicamento=AMOX-500, cantidad=100, proveedor=PROVEEDOR_DEFAULT]
+Stock AMOX-500 agotado: 0
+Sustituto AMOX-500: Medicamento[codigo=AMOX-750, nombre=Amoxicilina 750mg, droga=Amoxicilina, presentacion=Comprimidos x 12]
+
+--- PRUEBA 5: Procesamiento de pedido ---
+Pedidos en cola: 3
+  Pedido[id=PED-1, sucursal=SUC-PALERMO, medicamento=AMOX-500, cantidad=100, proveedor=PROVEEDOR_DEFAULT]
+  Pedido[id=PED-2, sucursal=SUC-PALERMO, medicamento=IBU-400, cantidad=100, proveedor=PROVEEDOR_DEFAULT]
+  Pedido[id=PED-3, sucursal=SUC-PALERMO, medicamento=AMOX-500, cantidad=100, proveedor=PROVEEDOR_DEFAULT]
+[PEDIDO PROCESADO] Pedido[id=PED-1, sucursal=SUC-PALERMO, medicamento=AMOX-500, cantidad=100, proveedor=PROVEEDOR_DEFAULT] -> lote ingresado: L-REPO-001
+Stock AMOX-500 tras procesar pedido: 100 u.
+
+--- PRUEBA 6: Purga de lotes vencidos ---
+Stock DICLOF   antes de purga: 40 u.
+Stock AMOX-750 antes de purga: 25 u.
+[BATCH] Purga de lotes vencidos completada.
+Stock DICLOF   después de purga: 0 u.
+Stock AMOX-750 después de purga: 0 u.
+
+=== FIN DEL ESCENARIO DE PRUEBA ===
