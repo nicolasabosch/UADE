@@ -1,0 +1,5 @@
+# id;nombreUsuario;nombre;apellido;email;password;plan
+1;juan_free;Juan;Lopez;juan@mail.com;1234;PREMIUM
+2;maria_premium;Maria;Garcia;maria@mail.com;abcd;PREMIUM
+3;leo_artist;Leo;Diaz;leo@mail.com;pass;ARTIST_PASS
+4;ana_artist;Ana;Ruiz;ana@mail.com;x;ARTIST_PASS

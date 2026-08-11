@@ -1,0 +1,2 @@
+# id;titulo;duracion;descripcion;fecha;disponible;exclusivo;resolucion;subtitulos;url;cancionId
+201;Yellow - Video Oficial;275;Videoclip oficial.;01/08/2000;true;false;1080p;true;https://uadebeats.com/v/yellow;102

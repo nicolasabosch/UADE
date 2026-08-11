@@ -1,0 +1,3 @@
+# id;titulo;duracion;descripcion;fecha;disponible;exclusivo;entrevistador;tematica;url
+401;Backstage Coldplay;600;Entrevista exclusiva.;20/05/2024;false;true;UADE Beats TV;Historia de la banda;https://uadebeats.com/e/coldplay
+402;Detras de Yellow;420;Entrevista al director del videoclip.;10/08/2000;true;true;UADE Beats TV;Produccion musical;https://uadebeats.com/e/yellow

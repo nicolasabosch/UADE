@@ -1,0 +1,3 @@
+# id;titulo;descripcion;fecha;disponible;exclusivo;anio;discografica;cancionIds
+301;Parachutes;Primer album.;10/07/2000;true;false;2000;Parlophone;102,103
+302;Favoritos UADE;Seleccion compartida.;13/06/2026;true;false;2026;UADE Beats;101,102

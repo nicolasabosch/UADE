@@ -1,0 +1,3 @@
+# id;nombre;generoPrincipal;biografia;verificado
+1;Los Palmeras;Cumbia;Banda de cumbia.;true
+2;Coldplay;Pop Rock;Banda britanica.;true

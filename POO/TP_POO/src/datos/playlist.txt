@@ -1,0 +1,10 @@
+# id;nombre;usuarioPropietarioId;contenidoIds
+1;Mis favoritos;2;101,103,201
+2;Rock del cole;1;101,102
+3;Sesion artista;3;103,201
+4;Relax premium;2;102,104,105
+5;Solo videoclips;2;201
+6;Cumbia night;1;101,104,106
+7;Mix corto;1;104,105
+8;Exclusivos VIP;3;103,105,107
+9;Para compartir;3;101,102,104,106

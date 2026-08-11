@@ -1,0 +1,15 @@
+C:\Proyectos\UADE\Programación_3\Ejercicios_en_clase\Ejercicio_1 MergeSort\obj\Debug\net10.0\Ejercicio_1 MergeSort.GeneratedMSBuildEditorConfig.editorconfig
+C:\Proyectos\UADE\Programación_3\Ejercicios_en_clase\Ejercicio_1 MergeSort\obj\Debug\net10.0\Ejercicio_1 MergeSort.AssemblyInfoInputs.cache
+C:\Proyectos\UADE\Programación_3\Ejercicios_en_clase\Ejercicio_1 MergeSort\obj\Debug\net10.0\Ejercicio_1 MergeSort.AssemblyInfo.cs
+C:\Proyectos\UADE\Programación_3\Ejercicios_en_clase\Ejercicio_1 MergeSort\obj\Debug\net10.0\Ejercicio_1 MergeSort.csproj.CoreCompileInputs.cache
+C:\Proyectos\UADE\Programación_3\Ejercicios_en_clase\Ejercicio_1 MergeSort\obj\Debug\net10.0\Ejercicio_1 MergeSort.sourcelink.json
+C:\Proyectos\UADE\Programación_3\Ejercicios_en_clase\Ejercicio_1 MergeSort\bin\Debug\net10.0\Ejercicio_1 MergeSort.exe
+C:\Proyectos\UADE\Programación_3\Ejercicios_en_clase\Ejercicio_1 MergeSort\bin\Debug\net10.0\Ejercicio_1 MergeSort.deps.json
+C:\Proyectos\UADE\Programación_3\Ejercicios_en_clase\Ejercicio_1 MergeSort\bin\Debug\net10.0\Ejercicio_1 MergeSort.runtimeconfig.json
+C:\Proyectos\UADE\Programación_3\Ejercicios_en_clase\Ejercicio_1 MergeSort\bin\Debug\net10.0\Ejercicio_1 MergeSort.dll
+C:\Proyectos\UADE\Programación_3\Ejercicios_en_clase\Ejercicio_1 MergeSort\bin\Debug\net10.0\Ejercicio_1 MergeSort.pdb
+C:\Proyectos\UADE\Programación_3\Ejercicios_en_clase\Ejercicio_1 MergeSort\obj\Debug\net10.0\Ejercicio_1 MergeSort.dll
+C:\Proyectos\UADE\Programación_3\Ejercicios_en_clase\Ejercicio_1 MergeSort\obj\Debug\net10.0\refint\Ejercicio_1 MergeSort.dll
+C:\Proyectos\UADE\Programación_3\Ejercicios_en_clase\Ejercicio_1 MergeSort\obj\Debug\net10.0\Ejercicio_1 MergeSort.pdb
+C:\Proyectos\UADE\Programación_3\Ejercicios_en_clase\Ejercicio_1 MergeSort\obj\Debug\net10.0\Ejercicio_1 MergeSort.genruntimeconfig.cache
+C:\Proyectos\UADE\Programación_3\Ejercicios_en_clase\Ejercicio_1 MergeSort\obj\Debug\net10.0\ref\Ejercicio_1 MergeSort.dll
